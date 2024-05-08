@@ -17,7 +17,7 @@
 <body>
     <?= $this->include('components/header') ?>
     <div class="container">
-        <div class="w-full h-[93vh] lg:pl-72 z-[1] overflow-clip">
+        <div class="w-full h-full lg:pl-72 z-[1] overflow-clip">
             <!-- Content -->
             <?= $this->renderSection('content') ?>
             <!-- End Content -->

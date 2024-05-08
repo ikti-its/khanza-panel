@@ -609,7 +609,7 @@ class berkasController extends BaseController
 
             $tambah_berkas_JSON = json_encode($postData);
 
-            $akun_url = 'https://api.fathoor.dev/v1/pegawai/berkas/' . $pegawaiId;
+            $akun_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
             // Check if email and role are provided
             if (session()->has('jwt_token')) {
@@ -843,7 +843,7 @@ class berkasController extends BaseController
 
             $tambah_berkas_JSON = json_encode($postData);
 
-            $akun_url = 'https://api.fathoor.dev/v1/pegawai/berkas/' . $pegawaiId;
+            $akun_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
             // Check if email and role are provided
             if (session()->has('jwt_token')) {
@@ -959,7 +959,7 @@ class berkasController extends BaseController
 
             $tambah_berkas_JSON = json_encode($postData);
 
-            $akun_url = 'https://api.fathoor.dev/v1/pegawai/berkas/' . $pegawaiId;
+            $akun_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
             // Check if email and role are provided
             if (session()->has('jwt_token')) {
@@ -1075,7 +1075,7 @@ class berkasController extends BaseController
 
             $tambah_berkas_JSON = json_encode($postData);
 
-            $akun_url = 'https://api.fathoor.dev/v1/pegawai/berkas/' . $pegawaiId;
+            $akun_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
             // Check if email and role are provided
             if (session()->has('jwt_token')) {
@@ -1191,7 +1191,7 @@ class berkasController extends BaseController
 
             $tambah_berkas_JSON = json_encode($postData);
 
-            $akun_url = 'https://api.fathoor.dev/v1/pegawai/berkas/' . $pegawaiId;
+            $akun_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
             // Check if email and role are provided
             if (session()->has('jwt_token')) {
@@ -1256,7 +1256,8 @@ class berkasController extends BaseController
             $token = session()->get('jwt_token');
 
             // URL for deleting the user data
-            $delete_url =  'https://api.fathoor.dev/v1/pegawai/berkas/' . $pegawaiId;
+            $delete_url =  $this->api_url . '/pegawai/berkas/' . $pegawaiId;
+            
 
             // Initialize cURL session for sending the DELETE request
             $ch = curl_init($delete_url);

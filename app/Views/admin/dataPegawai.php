@@ -59,82 +59,12 @@
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
                                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            ID
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            ID Akun
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
                                             Nama
                                         </span>
                                     </div>
                                 </th>
 
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Jenis Kelamin
-                                        </span>
-                                    </div>
-                                </th>
 
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Jabatan
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Departemen
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Status aktif
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Jenis Pegawai
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Telepon
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Tanggal masuk
-                                        </span>
-                                    </div>
-                                </th>
 
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
@@ -155,6 +85,18 @@
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
 
                             <?php foreach ($akun_data as $pegawaiEntry) : ?>
+
+                                <?php
+                                // Find the corresponding alamat entry based on id_akun
+                                $alamatEntry = null;
+                                foreach ($alamat_data as $alamat) {
+                                    if ($alamat['id_akun'] === $pegawaiEntry['id_akun']) {
+                                        $alamatEntry = $alamat;
+                                        break;
+                                    }
+                                }
+                                ?>
+
                                 <tr>
                                     <td class="size-px whitespace-nowrap">
                                         <div class="ps-6 py-3">
@@ -174,61 +116,263 @@
 
                                     <td class="h-px w-72 whitespace-nowrap">
                                         <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['id'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
-
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['id_akun'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
-
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
                                             <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['nama'] ?? 'N/A' ?></span>
                                         </div>
                                     </td>
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['jenis_kelamin'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['jabatan'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['departemen'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div class="px-6 py-1.5">
+                                            <button type="button" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-basic-modal-<?= $pegawaiEntry['id'] ?>">
+                                                More Info
+                                            </button>
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['status_aktif'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
+                                            <div id="hs-basic-modal-<?= $pegawaiEntry['id'] ?>" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden size-full fixed top-0 start-0 z-[80] opacity-0 overflow-x-hidden transition-all overflow-y-auto pointer-events-none">
+                                                <div class="sm:max-w-3xl sm:w-full m-3 sm:mx-auto">
+                                                    <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                                                        <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+                                                            <h3 class="font-bold text-gray-800 dark:text-white">
+                                                                More Info
+                                                            </h3>
+                                                            <button type="button" class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700" data-hs-overlay="#hs-basic-modal-<?= $pegawaiEntry['id'] ?>">
+                                                                <span class="sr-only">Close</span>
+                                                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <path d="M18 6 6 18"></path>
+                                                                    <path d="m6 6 12 12"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        <div class="p-4 overflow-y-auto">
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        NIP
+                                                                    </label>
+                                                                </div>
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['jenis_pegawai'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
+                                                                <!-- End Col -->
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['telepon'] ?? 'N/A' ?></span>
-                                        </div>
-                                    </td>
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['nip'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
 
-                                    <td class="h-px w-72 whitespace-nowrap">
-                                        <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $pegawaiEntry['tanggal_masuk'] ?? 'N/A' ?></span>
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        ID
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['id'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        ID Akun
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['id_akun'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Nama
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['nama'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Jenis Kelamin
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jenis_kelamin'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Jabatan
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jabatan'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Departemen
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['departemen'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Status Aktif
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['status_aktif'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Jenis Pegawai
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jenis_pegawai'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Telepon
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['telepon'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Tanggal Masuk
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['tanggal_masuk'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Alamat
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Alamat_Lat
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat_lat'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+
+                                                            <div class="sm:flex sm:items-center py-4">
+                                                                <!-- Grid -->
+                                                                <div class="sm:w-1/6">
+                                                                    <label for="af-account-id-akun" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                                                                        Alamat_Lon
+                                                                    </label>
+                                                                </div>
+
+                                                                <!-- End Col -->
+
+                                                                <div class="sm:col-span-9">
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat_lon'] ?? 'N/A' ?></span>
+                                                                </div>
+                                                                <!-- End Col -->
+                                                            </div>
+                                                         
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
 
@@ -248,76 +392,76 @@
                                         </div>
                                     </td>
                                 </tr>
-
                             <?php endforeach; ?>
 
+
                         </tbody>
-                        
+
                     </table>
                     <!-- End Table -->
 
                     <!-- Footer -->
                     <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-gray-700">
-                            <!-- Pagination -->
-                            <nav class="flex items-center gap-x-1">
-                                <?php if ($meta_data['page'] > 1) : ?>
-                                    <a href="/dataakun?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
-                                        <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="m15 18-6-6 6-6" />
-                                        </svg>
-                                        <span aria-hidden="true" class="sr-only">Previous</span>
-                                    </a>
-                                <?php endif; ?>
-
-                                <div class="flex items-center gap-x-1">
-                                    <span class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-gray-200 text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-white dark:focus:bg-white/10"><?= $meta_data['page'] ?></span>
-                                    <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm dark:text-gray-500">of</span>
-                                    <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm dark:text-gray-500"><?= $meta_data['total'] ?></span>
-                                </div>
-
-                                <?php if ($meta_data['page'] < $meta_data['total']) : ?>
-                                    <a href="/dataakun?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
-                                        <span aria-hidden="true" class="sr-only">Next</span>
-                                        <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="m9 18 6-6-6-6" />
-                                        </svg>
-                                    </a>
-                                <?php endif; ?>
-
-                            </nav>
-
-
-                            <!-- Dropdown -->
-                            <div class="hs-dropdown relative inline-flex [--placement:top-left]">
-                                <button id="dropDownButton" type="button" class="hs-dropdown-toggle min-h-[32px] py-1 px-2 inline-flex items-center gap-x-1 text-sm rounded-lg border border-gray-200 text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                                    <?= $meta_data['size'] ?> page
-                                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="m6 9 6 6 6-6" />
+                        <!-- Pagination -->
+                        <nav class="flex items-center gap-x-1">
+                            <?php if ($meta_data['page'] > 1) : ?>
+                                <a href="/dataakun?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m15 18-6-6 6-6" />
                                     </svg>
-                                </button>
-                                <div id="dropdown" class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-48 hidden z-50 transition-[margin,opacity] opacity-0 duration-300 mb-2 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700" aria-labelledby="hs-small-pagination-dropdown">
+                                    <span aria-hidden="true" class="sr-only">Previous</span>
+                                </a>
+                            <?php endif; ?>
 
-                                    <a href="/datapegawai?page=1&size=5">
-                                        <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
-                                            5 page
-                                        </button>
-                                    </a>
-
-                                    <a href="/datapegawai?page=1&size=10">
-                                        <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
-                                            10 page
-                                        </button>
-                                    </a>
-
-                                </div>
+                            <div class="flex items-center gap-x-1">
+                                <span class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-gray-200 text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-white dark:focus:bg-white/10"><?= $meta_data['page'] ?></span>
+                                <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm dark:text-gray-500">of</span>
+                                <span class="min-h-[38px] flex justify-center items-center text-gray-500 py-2 px-1.5 text-sm dark:text-gray-500"><?= $meta_data['total'] ?></span>
                             </div>
-                            <!-- End Dropdown -->
+
+                            <?php if ($meta_data['page'] < $meta_data['total']) : ?>
+                                <a href="/dataakun?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                    <span aria-hidden="true" class="sr-only">Next</span>
+                                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m9 18 6-6-6-6" />
+                                    </svg>
+                                </a>
+                            <?php endif; ?>
+
+                        </nav>
 
 
-                            <!-- End Pagination -->
+                        <!-- Dropdown -->
+                        <div class="hs-dropdown relative inline-flex [--placement:top-left]">
+                            <button id="dropDownButton" type="button" class="hs-dropdown-toggle min-h-[32px] py-1 px-2 inline-flex items-center gap-x-1 text-sm rounded-lg border border-gray-200 text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                                <?= $meta_data['size'] ?> page
+                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6" />
+                                </svg>
+                            </button>
+                            <div id="dropdown" class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-48 hidden z-50 transition-[margin,opacity] opacity-0 duration-300 mb-2 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700" aria-labelledby="hs-small-pagination-dropdown">
+
+                                <a href="/datapegawai?page=1&size=5">
+                                    <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
+                                        5 page
+                                    </button>
+                                </a>
+
+                                <a href="/datapegawai?page=1&size=10">
+                                    <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
+                                        10 page
+                                    </button>
+                                </a>
+
+                            </div>
                         </div>
+                        <!-- End Dropdown -->
 
-                        <!-- End Footer -->
+
+                        <!-- End Pagination -->
+                    </div>
+
+                    <!-- End Footer -->
 
 
 
