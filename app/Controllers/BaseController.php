@@ -55,4 +55,11 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    protected $api_url;
+
+    public function __construct()
+    {
+        $this->api_url = getenv('api_URL');
+    }
 }
