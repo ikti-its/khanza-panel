@@ -11,8 +11,8 @@ $routes->get('/login', 'authController::index');
 $routes->get('/logout', 'authController::logout', ['filter' => 'auth']);
 
 
-$routes->get('/admin', 'authController::dashboard', ['filter' => 'auth']);
-$routes->post('/admin', 'authController::login', ['filter' => 'noauth']);
+$routes->get('/dashboard', 'authController::dashboard', ['filter' => 'auth']);
+$routes->post('/dashboard', 'authController::login', ['filter' => 'noauth']);
 
 //kalo mau akses halaman pake auth, pertama kali pake no auth(contoh di login)
 $routes->get('/dataakun', 'akunController::dataAkun', ['filter' => 'auth'] );
