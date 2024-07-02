@@ -41,9 +41,8 @@ $routes->get('/hapusakun/(:segment)', 'AkunController::hapusAkun/$1');
 // $routes->get('/presensipegawai', 'adminController::presensiPegawai');
 
 //==============================================================================
-$routes->get('/datapegawai', 'pegawaiController::dataPegawai', ['filter' => 'auth']);
-
-$routes->get('/datapegawai-test', 'pegawaiController::dataPegawaiTest',  ['filter' => 'auth']);
+$routes->get('/datapegawai', 'pegawaiController::dataPegawai', ['filter' => 'auth'] );
+$routes->get('/datapegawai-test', 'pegawaiController::dataPegawaiTest',  ['filter' => 'auth'] );
 
 $routes->get('/tambahpegawai', 'pegawaiController::tambahPegawai', ['filter' => 'auth']);
 $routes->post('/submittambahpegawai', 'pegawaiController::submitTambahPegawai', ['filter' => 'auth']);
