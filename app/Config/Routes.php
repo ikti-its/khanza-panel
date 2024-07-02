@@ -27,6 +27,33 @@ $routes->post('/submiteditakun/(:segment)', 'AkunController::submitEditAkun/$1')
 
 $routes->get('/hapusakun/(:segment)', 'AkunController::hapusAkun/$1');
 
+
+//kalo mau akses halaman pake auth, pertama kali pake no auth(contoh di login)
+$routes->get('/datacuti', 'cutiController::dataCuti', ['filter' => 'auth'] );
+
+$routes->get('/tambahcuti', 'cutiController::tambahCuti', ['filter' => 'auth']);
+$routes->post('/submittambahcuti', 'cutiController::submitTambahCuti', ['filter' => 'auth']);
+
+$routes->get('/editcuti/(:any)', 'cutiController::editCuti/$1', ['filter' => 'auth']);
+$routes->post('/submiteditcuti/(:segment)', 'cutiController::submitEditCuti/$1');
+
+$routes->get('/hapuscuti/(:segment)', 'cutiController::hapusCuti/$1');
+
+
+$routes->get('/jadwalpegawai', 'jadwalController::dataJadwal', ['filter' => 'auth'] );
+$routes->get('/detailjadwal/(:any)', 'jadwalController::dataDetailJadwal/$1', ['filter' => 'auth']);
+
+$routes->get('/tambahjadwal', 'jadwalController::tambahJadwal', ['filter' => 'auth']);
+$routes->post('/submittambahjadwal', 'jadwalController::submitTambahJadwal', ['filter' => 'auth']);
+
+$routes->get('/editjadwal/(:any)', 'jadwalController::editJadwal/$1', ['filter' => 'auth']);
+$routes->post('/submiteditjadwal/(:segment)', 'jadwalController::submitEditJadwal/$1', ['filter' => 'auth']);
+
+// $routes->get('/hapusjadwal/(:segment)', 'jadwalController::hapusJadwal/$1');
+
+$routes->get('/lokasiorganisasi', 'lokasiController::dataLokasi', ['filter' => 'auth'] );
+$routes->post('/submiteditlokasi/(:segment)', 'lokasiController::submitEditLokasi/$1', ['filter' => 'auth']);
+
 // $routes->get('/datapegawai', 'akunController::dataPegawai');
 
 
