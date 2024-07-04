@@ -23,6 +23,7 @@
 
                 <div class="sm:col-span-9">
                     <div class="flex items-center gap-5">
+                    <input type="hidden" name="currentPhoto" value="<?= $userData['foto'] ?>">
                         <img id="preview-image" src="<?= $userData['foto'] ?>" class="inline-block size-16 rounded-full ring-2 ring-white dark:ring-gray-800"  alt="Image Description">
                         <div class="max-w-sm">
                             <label class="block">

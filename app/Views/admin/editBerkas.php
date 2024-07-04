@@ -7,16 +7,25 @@
     <div class="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
         <div class="mb-8">
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">
-                Profile
+                Ubah Berkas
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                Manage your name, password and account settings.
+                Ubah Berkas Pegawai
             </p>
         </div>
 
         <form action="/submiteditberkas/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
             <!-- Grid -->
 
+            
+            <input type="hidden" name="ktp_url_hidden" id="ktp_url_hidden" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
+            <input type="hidden" name="kk_url_hidden" id="kk_url_hidden" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
+            <input type="hidden" name="npwp_url_hidden" id="npwp_url_hidden" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
+            <input type="hidden" name="bpjs_url_hidden" id="bpjs_url_hidden" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
+            <input type="hidden" name="ijazah_url_hidden" id="ijazah_url_hidden" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
+            <input type="hidden" name="skck_url_hidden" id="skck_url_hidden" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
+            <input type="hidden" name="str_url_hidden" id="str_url_hidden" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
+            <input type="hidden" name="serkom_url_hidden" id="serkom_url_hidden" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
 
             <div class="sm:col-span-3">
                 <label for="af-pegawai-id" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
@@ -151,26 +160,6 @@
                 </div>
             </div>
 
-            <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-            <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-            <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-            <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-            <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-            <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-            <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-            <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
-
-            <div class="mt-5 flex justify-end gap-x-2">
-                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    Cancel
-                </button>
-                <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    Save changes
-                </button>
-            </div>
-        </form>
-
-        <form action="/submiteditktp/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
 
             <div class="space-y-2">
                 <label for="af-submit-ktp-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
@@ -178,39 +167,23 @@
                 </label>
 
                 <label for="af-submit-ktp-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-ktp-upload-images" name="af-submit-ktp-upload-images" type="file" class="sr-only" onchange="previewImage(event)">
+                    <input id="af-submit-ktp-upload-images" accept=".jpg, .png" name="ktp_url" type="file" class="sr-only" onchange="previewImage(event)">
                     <img id="ktp-image-preview" class="mx-auto size-40" src="<?= isset($userData['ktp']) ? $userData['ktp'] : '#' ?>" alt="KTP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 mb-4 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
+
 
                 </label>
 
-                <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
 
-                <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
 
             </div>
 
@@ -230,46 +203,29 @@
             </script>
 
 
-        </form>
 
-        <form action="/submiteditkk/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
+
+
             <div class="space-y-2">
                 <label for="af-submit-kk-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     KK Image
                 </label>
 
                 <label for="af-submit-kk-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-kk-upload-images" name="af-submit-kk-upload-images" type="file" class="sr-only" onchange="previewImageKK(event)">
+                    <input id="af-submit-kk-upload-images" accept=".jpg, .png" name="kk_url" type="file" class="sr-only" onchange="previewImageKK(event)">
                     <img id="kk-image-preview" class=" mx-auto size-40" src="<?= isset($userData['kk']) ? $userData['kk'] : '#' ?>" alt="KK Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 mb-4 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
 
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
 
                 </label>
             </div>
@@ -289,50 +245,32 @@
                 }
             </script>
 
-        </form>
 
 
 
-        <form action="/submiteditnpwp/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
+
+
             <div class="space-y-2">
                 <label for="af-submit-npwp-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     NPWP Image
                 </label>
 
                 <label for="af-submit-npwp-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-npwp-upload-images" name="af-submit-npwp-upload-images" type="file" class="sr-only" onchange="previewImageNPWP(event)">
+                    <input id="af-submit-npwp-upload-images" accept=".jpg, .png" name="npwp_url" type="file" class="sr-only" onchange="previewImageNPWP(event)">
                     <img id="npwp-image-preview" class="mx-auto size-40" src="<?= isset($userData['npwp']) ? $userData['npwp'] : '#' ?>" alt="NPWP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
 
 
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
-
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
 
                 </label>
             </div>
@@ -351,48 +289,32 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             </script>
-        </form>
 
-        <form action="/submiteditbpjs/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
+
+
             <div class="space-y-2">
                 <label for="af-submit-bpjs-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     BPJS Image
                 </label>
 
                 <label for="af-submit-bpjs-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-bpjs-upload-images" name="af-submit-bpjs-upload-images" type="file" class="sr-only" onchange="previewImageBPJS(event)">
+                    <input id="af-submit-bpjs-upload-images" accept=".jpg, .png" name="bpjs_url" type="file" class="sr-only" onchange="previewImageBPJS(event)">
                     <img id="bpjs-image-preview" class="mx-auto size-40" src="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '#' ?>" alt="NPWP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
 
 
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
 
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
+
 
                 </label>
             </div>
@@ -411,47 +333,29 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             </script>
-        </form>
 
-        <form action="/submiteditijazah/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
+
+
             <div class="space-y-2">
                 <label for="af-submit-ijazah-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     Ijazah
                 </label>
 
                 <label for="af-submit-ijazah-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-ijazah-upload-images" name="af-submit-ijazah-upload-images" type="file" class="sr-only" onchange="previewImageIjazah(event)">
+                    <input id="af-submit-ijazah-upload-images" accept=".jpg, .png" name="ijazah_url" type="file" class="sr-only" onchange="previewImageIjazah(event)">
                     <img id="ijazah-image-preview" class="mx-auto size-40" src="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '#' ?>" alt="NPWP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
 
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
-
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
 
                 </label>
             </div>
@@ -469,46 +373,29 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             </script>
-        </form>
 
-        <form action="/submiteditskck/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
+
+
             <div class="space-y-2">
                 <label for="af-submit-skck-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     SKCK
                 </label>
 
                 <label for="af-submit-skck-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-skck-upload-images" name="af-submit-skck-upload-images" type="file" class="sr-only" onchange="previewImageSkck(event)">
+                    <input id="af-submit-skck-upload-images" accept=".jpg, .png" name="skck_url" type="file" class="sr-only" onchange="previewImageSkck(event)">
                     <img id="skck-image-preview" class="mx-auto size-40" src="<?= isset($userData['skck']) ? $userData['skck'] : '#' ?>" alt="NPWP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
 
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
 
                 </label>
             </div>
@@ -526,47 +413,29 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             </script>
-        </form>
 
-        <form action="/submiteditstr/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
+
+
             <div class="space-y-2">
                 <label for="af-submit-str-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     STR
                 </label>
 
                 <label for="af-submit-str-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-str-upload-images" name="af-submit-str-upload-images" type="file" class="sr-only" onchange="previewImageStr(event)">
+                    <input id="af-submit-str-upload-images" accept=".jpg, .png" name="str_url" type="file" class="sr-only" onchange="previewImageStr(event)">
                     <img id="str-image-preview" class="mx-auto size-40" src="<?= isset($userData['str']) ? $userData['str'] : '#' ?>" alt="NPWP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
 
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
-
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
                 </label>
             </div>
 
@@ -584,48 +453,26 @@
                 }
             </script>
 
-        </form>
-
-
-        <form action="/submiteditserkom/<?= $pegawaiId ?>" method="post" enctype="multipart/form-data">
             <div class="space-y-2">
                 <label for="af-submit-serkom-upload-images" class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
                     SERKOM
                 </label>
 
                 <label for="af-submit-serkom-upload-images" class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2 dark:border-neutral-700">
-                    <input id="af-submit-serkom-upload-images" name="af-submit-serkom-upload-images" type="file" class="sr-only" onchange="previewImageSerkom(event)">
+                    <input id="af-submit-serkom-upload-images" accept=".jpg, .png" name="serkom_url" type="file" class="sr-only" onchange="previewImageSerkom(event)">
                     <img id="serkom-image-preview" class="mx-auto size-40" src="<?= isset($userData['serkom']) ? $userData['serkom'] : '#' ?>" alt="NPWP Image Preview"> <!-- Hidden by default -->
                     <svg class="size-10 mx-auto text-gray-400 dark:text-neutral-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2z" />
                         <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z" />
                     </svg>
                     <span class="mt-2 block text-sm text-gray-800 dark:text-neutral-200">
-                        Browse your device or <span class="group-hover:text-teal-700 text-teal-600">drag 'n drop'</span>
+                        Telusuri perangkat Anda atau <span class="group-hover:text-teal-700 text-teal-600">seret dan lepas</span>
                     </span>
                     <span class="mt-1 block text-xs text-gray-500 dark:text-neutral-500">
-                        Maximum file size is 2 MB
+                        Ukuran file maksimum 3 MB
                     </span>
 
-                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Save changes
-                    </button>
 
-                    <input type="hidden" name="id_pegawai_hidden" id="id_pegawai_hidden" value="<?= isset($userData['id_pegawai']) ? $userData['id_pegawai'] : '' ?>">
-                    <input type="hidden" name="nik_hidden" id="nik_hidden" value="<?= isset($userData['nik']) ? $userData['nik'] : '' ?>">
-                    <input type="hidden" name="tempat_lahir_hidden" id="tempat_lahir_hidden" value="<?= isset($userData['tempat_lahir']) ? $userData['tempat_lahir'] : '' ?>">
-                    <input type="hidden" name="tanggal_lahir_hidden" id="tanggal_lahir_hidden" value="<?= isset($userData['tanggal_lahir']) ? $userData['tanggal_lahir'] : '' ?>">
-                    <input type="hidden" name="agama_hidden" id="agama_hidden" value="<?= isset($userData['agama']) ? $userData['agama'] : '' ?>">
-                    <input type="hidden" name="pendidikan_hidden" id="pendidikan_hidden" value="<?= isset($userData['pendidikan']) ? $userData['pendidikan'] : '' ?>">
-
-                    <input type="hidden" name="ktp_url" id="ktp_url" value="<?= isset($userData['ktp']) ? $userData['ktp'] : '' ?>">
-                    <input type="hidden" name="kk_url" id="kk_url" value="<?= isset($userData['kk']) ? $userData['kk'] : '' ?>">
-                    <input type="hidden" name="npwp_url" id="npwp_url" value="<?= isset($userData['npwp']) ? $userData['npwp'] : '' ?>">
-                    <input type="hidden" name="bpjs_url" id="bpjs_url" value="<?= isset($userData['bpjs']) ? $userData['bpjs'] : '' ?>">
-                    <input type="hidden" name="ijazah_url" id="ijazah_url" value="<?= isset($userData['ijazah']) ? $userData['ijazah'] : '' ?>">
-                    <input type="hidden" name="skck_url" id="skck_url" value="<?= isset($userData['skck']) ? $userData['skck'] : '' ?>">
-                    <input type="hidden" name="str_url" id="str_url" value="<?= isset($userData['str']) ? $userData['str'] : '' ?>">
-                    <input type="hidden" name="serkom_url" id="serkom_url" value="<?= isset($userData['serkom']) ? $userData['serkom'] : '' ?>">
                 </label>
             </div>
 
@@ -643,7 +490,24 @@
                 }
             </script>
 
+
+            <div class="mt-5 flex justify-end gap-x-2">
+                <a href="/databerkas">
+                    <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                        Batal
+                    </button>
+                </a>
+
+                <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    Ubah Berkas
+                </button>
+            </div>
         </form>
+
+
+
+
+
 
     </div>
     <!-- End Grid -->

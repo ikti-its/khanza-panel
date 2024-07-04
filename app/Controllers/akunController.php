@@ -281,98 +281,102 @@ class AkunController extends BaseController
     }
 
     public function submitEditAkun($userId)
-    {
-        if ($this->request->getPost()) {
+{
+    if ($this->request->getPost()) {
+        // Retrieve the form data from the POST request
+        $email = $this->request->getPost('email');
+        $role = intval($this->request->getPost('role'));
+        $password = $this->request->getPost('password');
+        $file = $this->request->getFile('profilePhoto');
 
-            // Retrieve the form data from the POST request
-            $email = $this->request->getPost('email');
-            $role = intval($this->request->getPost('role'));
-            $password = $this->request->getPost('password');
-            $file = $this->request->getFile('profilePhoto');
+        // Get the current photo URL from the form data
+        $currentPhoto = $this->request->getPost('currentPhoto');
 
-            if ($file && $file->isValid() && !$file->hasMoved()) {
-                log_message('debug', 'File is valid and not moved yet.');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            log_message('debug', 'File is valid and not moved yet.');
 
-                $fileName = $file->getRandomName();
-                $file->move(ROOTPATH . 'public/uploads/', $fileName);
+            $fileName = $file->getRandomName();
+            $file->move(ROOTPATH . 'public/uploads/', $fileName);
 
-                $file_url = ROOTPATH . 'public/uploads/' . $fileName;
+            $file_url = ROOTPATH . 'public/uploads/' . $fileName;
 
-                $file_url2 = $this->uploadFileImg($file_url);
+            $file_url2 = $this->uploadFileImg($file_url);
 
-                // Delete the uploaded file if the final URL was successfully obtained
-                if ($file_url2) {
-                    unlink($file_url); // Delete the file
-                }
+            // Delete the uploaded file if the final URL was successfully obtained
+            if ($file_url2) {
+                unlink($file_url); // Delete the file
+            }
 
-                // Prepare the data to be sent to the API
-            $postData = [
-                'email' => $email,
-                'role' => $role,
-                'password' => $password,
-                'foto' => $file_url2
-            ];
+            // Use the new photo URL
+            $photoUrl = $file_url2;
+        } else {
+            // Use the existing photo URL
+            $photoUrl = $currentPhoto;
+        }
 
-            $edit_akun_JSON = json_encode($postData);
+        // Prepare the data to be sent to the API
+        $postData = [
+            'email' => $email,
+            'role' => $role,
+            'password' => $password,
+            'foto' => $photoUrl
+        ];
 
-            $akun_url = $this->api_url . '/akun/' . $userId;
+        $edit_akun_JSON = json_encode($postData);
 
-            // Check if email and role are provided
-            if (session()->has('jwt_token')) {
-                // Assume you have some validation logic here for email and role
+        $akun_url = $this->api_url . '/akun/' . $userId;
 
-                $token = session()->get('jwt_token');
+        // Check if email and role are provided
+        if (session()->has('jwt_token')) {
+            // Assume you have some validation logic here for email and role
 
-                // Initialize cURL session for sending the PUT request
-                $ch = curl_init($akun_url);
+            $token = session()->get('jwt_token');
 
-                // Set cURL options for sending a PUT request
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, ($edit_akun_JSON));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                    'Content-Type: application/json',
-                    'Content-Length: ' . strlen($edit_akun_JSON),
-                    'Authorization: Bearer ' . $token,
-                ]);
+            // Initialize cURL session for sending the PUT request
+            $ch = curl_init($akun_url);
 
-                // Execute the cURL request
-                $response = curl_exec($ch);
+            // Set cURL options for sending a PUT request
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, ($edit_akun_JSON));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($edit_akun_JSON),
+                'Authorization: Bearer ' . $token,
+            ]);
 
-                // Check if the API request was successful
-                if ($response) {
+            // Execute the cURL request
+            $response = curl_exec($ch);
 
-                    // Check if the HTTP status code in the response
-                    $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            // Check if the API request was successful
+            if ($response) {
+                // Check if the HTTP status code in the response
+                $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-                    if ($http_status_code === 200) {
-                        // Account updated successfully
-                        $title = 'Data Akun';
+                if ($http_status_code === 200) {
+                    // Account updated successfully
+                    $title = 'Data Akun';
 
-                        // Pass the updated account data along with the title to the view
-                        return redirect()->to(base_url('dataakun?page=1&size=5'));
-                    } else {
-                        // Error response from the API
-                        return "Error updating account: " . $response;
-                    }
+                    // Pass the updated account data along with the title to the view
+                    return redirect()->to(base_url('dataakun?page=1&size=5'));
                 } else {
-                    // Error sending request to the API
-                    return "Error sending request to the API.";
+                    // Error response from the API
+                    return "Error updating account: " . $response;
                 }
-
-                // Close the cURL session
-                curl_close($ch);
             } else {
-                // Email or role is empty
-                return "Email and role are required.";
+                // Error sending request to the API
+                return "Error sending request to the API.";
             }
 
-
-            }
-
-            
+            // Close the cURL session
+            curl_close($ch);
+        } else {
+            // Email or role is empty
+            return "Email and role are required.";
         }
     }
+}
+
 
     public function hapusAkun($userId)
     {
