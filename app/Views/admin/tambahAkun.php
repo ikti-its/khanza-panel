@@ -14,23 +14,23 @@
             </p>
         </div>
 
-        <form action="/submittambahakun" method="post">
+        <form action="/submittambahakun" method="post" enctype="multipart/form-data">
             <!-- Grid -->
             <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
                 <div class="sm:col-span-3">
                     <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                        Profile photo
+                        Foto Profil
                     </label>
                 </div>
                 <!-- End Col -->
 
                 <div class="sm:col-span-9">
                     <div class="flex items-center gap-5">
-                        <img id="preview-image" class="inline-block size-16 rounded-full ring-2 ring-white dark:ring-gray-800" src="https://api.fathoor.dev/v1/file/img/default.png" alt="Image Description">
+                        <img id="preview-image" class="inline-block size-16 rounded-full ring-2 ring-white dark:ring-gray-800"  alt="Image Description">
                         <div class="max-w-sm">
                             <label class="block">
                                 <span class="sr-only">Ubah profil foto</span>
-                                <input id="profilePhoto" type="file" accept=".jpg, .png" class="block w-full text-sm text-gray-500
+                                <input id="profilePhoto" name="profilePhoto" type="file" accept=".jpg, .png" class="block w-full text-sm text-gray-500
                         file:me-4 file:py-2 file:px-4
                         file:rounded-lg file:border-0
                         file:text-sm file:font-semibold
@@ -108,51 +108,16 @@
 </div>
 <!-- End Card Section -->
 
-<?= $this->endSection(); ?>
-
 <script>
-document.getElementById('profilePhoto').addEventListener('change', function() {
-    const fileInput = document.getElementById('profilePhoto');
-    const formData = new FormData();
-    formData.append('file', fileInput.files[0]);
-
-    fetch('https://api.fathoor.dev/v1/file/img', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            const previewImage = document.getElementById('preview-image');
-            previewImage.src = data.fileUrl;  // Adjust this based on your API response
-            document.getElementById('userForm').action = '/submittambahakun?profilePhoto=' + encodeURIComponent(data.fileUrl);
-        } else {
-            console.error('Upload failed:', data.message);
+    document.getElementById('profilePhoto').addEventListener('change', function(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var img = document.getElementById('preview-image');
+            img.src = reader.result;
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+        reader.readAsDataURL(event.target.files[0]);
     });
-});
-
-document.getElementById('userForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-
-    fetch(this.action, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = '/success';
-        } else {
-            console.error('Submit failed:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
 </script>
+
+
+<?= $this->endSection(); ?>

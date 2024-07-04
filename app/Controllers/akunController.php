@@ -82,31 +82,44 @@ class AkunController extends BaseController
     }
 
     public function submitTambahAkun()
-    {
-        if ($this->request->getPost()) {
+{
+    if ($this->request->getMethod() === 'post') {
 
-            // Retrieve the form data from the POST request
-            $email = $this->request->getPost('email');
-            $role = intval($this->request->getPost('role'));
-            $password = $this->request->getPost('password');
-            $foto = $this->api_url . '/file/img/default.png';
-            
+        // Retrieve the form data from the POST request
+        $email = $this->request->getPost('email');
+        $role = intval($this->request->getPost('role'));
+        $password = $this->request->getPost('password');
+        $file = $this->request->getFile('profilePhoto');
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            log_message('debug', 'File is valid and not moved yet.');
+
+            $fileName = $file->getRandomName();
+            $file->move(ROOTPATH . 'public/uploads/', $fileName);
+
+            $file_url = ROOTPATH . 'public/uploads/' . $fileName;
+
+            $file_url2 = $this->uploadFileImg($file_url);
+
+            // Delete the uploaded file if the final URL was successfully obtained
+            if ($file_url2) {
+                unlink($file_url); // Delete the file
+            }
+
             // Prepare the data to be sent to the API
             $postData = [
                 'email' => $email,
                 'role' => $role,
                 'password' => $password,
-                'foto' => $foto
+                'foto' => $file_url2 // Use the URL obtained after uploading the file
             ];
 
             $tambah_akun_JSON = json_encode($postData);
 
             $akun_url = $this->api_url . '/akun';
 
-            // Check if email and role are provided
+            // Check if the JWT token is present
             if (session()->has('jwt_token')) {
-                // Assume you have some validation logic here for email and role
-
                 $token = session()->get('jwt_token');
 
                 // Initialize cURL session for sending the POST request
@@ -114,7 +127,7 @@ class AkunController extends BaseController
 
                 // Set cURL options for sending a POST request
                 curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, ($tambah_akun_JSON));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $tambah_akun_JSON);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, [
                     'Content-Type: application/json',
@@ -127,31 +140,92 @@ class AkunController extends BaseController
 
                 // Check if the API request was successful
                 if ($response) {
-
-                    // Check if the HTTP status code in the response
+                    // Check the HTTP status code in the response
                     $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
                     if ($http_status_code === 201) {
                         // Account created successfully
-                        $title = 'Data Akun';
-
-                        // Pass the created account data along with the title to the view
+                        log_message('debug', 'Account created successfully.');
                         return redirect()->to(base_url('dataakun?page=1&size=5'));
                     } else {
                         // Error response from the API
+                        log_message('error', 'Error creating account: ' . $response);
                         return "Error creating account: " . $response;
                     }
                 } else {
                     // Error sending request to the API
-                    return "Error sending request to the API.";
+                    $error_message = curl_error($ch);
+                    log_message('error', 'Error sending request to the API: ' . $error_message);
+                    return "Error sending request to the API: " . $error_message;
                 }
 
                 // Close the cURL session
                 curl_close($ch);
             } else {
-                // Email or role is empty
-                return "Email and role are required.";
+                // JWT token is missing
+                log_message('error', 'JWT token is missing.');
+                return "JWT token is required.";
             }
+        } else {
+            // File upload failed
+            log_message('error', 'File upload failed.');
+            return "File upload failed. Please try again.";
+        }
+    } else {
+        log_message('error', 'Request method is not POST.');
+        return "Request method is not POST.";
+    }
+}
+
+
+    private function uploadFileImg($file_path)
+    {
+        // Check if the file exists
+        if (!file_exists($file_path)) {
+            return "Error: File not found.";
+        }
+
+        // Check if JWT token is provided
+        if (session()->has('jwt_token')) {
+            $token = session()->get('jwt_token');
+
+            // Initialize cURL session for sending the POST request to upload the image
+            $ch = curl_init($this->api_url . '/file/img');
+
+            // Set cURL options for sending a POST request to upload the image
+            $file_data = ['file' => new \CurlFile($file_path)]; // Create CurlFile object with the file path
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $file_data); // Send as multipart form data
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $token,
+            ]);
+
+            // Execute the cURL request to upload the image
+            $response = curl_exec($ch);
+
+            // Check for errors
+            if (curl_errno($ch)) {
+                $error_message = curl_error($ch);
+                curl_close($ch);
+                return "Error uploading image: " . $error_message;
+            }
+
+            // Close the cURL session
+            curl_close($ch);
+
+            // Decode the response
+            $responseData = json_decode($response, true);
+
+            // Check if the response contains URL
+            if (isset($responseData['data']['url'])) {
+                return $responseData['data']['url']; // Return the URL of the uploaded image
+            } else {
+                return "Error uploading image: Response does not contain URL. $response";
+            }
+        } else {
+            // JWT token is not provided
+            return "Error: JWT token is required.";
         }
     }
 

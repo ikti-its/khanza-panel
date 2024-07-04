@@ -30,11 +30,13 @@
                             <div class="px-6 py-4">
                                 <div class="grid grid-cols-1 gap-4">
                                     <div>
-                                        <label for="file_up" class="block text-sm font-medium text-gray-700 dark:text-gray-400">Unggah File</label>
-                                        <input type="file" name="file_up" id="file_up" class="mt-1 block w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-700 file:text-white hover:file:bg-teal-600 dark:file:bg-teal-700 dark:hover:file:bg-teal-600" accept=".jpg,.jpeg,.png" required>
+                                        <label for="file_up" class="mt -5block text-sm font-medium text-gray-700 dark:text-gray-400">Unggah File</label>
+                                        <input type="file" name="file_up" id="file_up" class="mt-5 block w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-700 file:text-white hover:file:bg-teal-600 dark:file:bg-teal-700 dark:hover:file:bg-teal-600" accept=".jpg,.jpeg,.png" required>
+                                        <label for="filee" class="mt-5 block text-sm font-medium text-gray-700 dark:text-gray-400"><?= session('file_url2') ?? 'URL file akan muncul disini' ?></label>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="px-6 py-4 flex justify-end">
                                 <button type="submit" class="py-2 px-4 bg-teal-600 text-white rounded-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 dark:bg-teal-700 dark:hover:bg-teal-600">Submit</button>
                             </div>
@@ -42,7 +44,7 @@
 
 
 
-                        <label for="filee" class="block text-sm font-medium text-gray-700 dark:text-gray-400"><?= session('file_url2') ?? 'a' ?></label>
+
 
                     </div>
                 </div>
