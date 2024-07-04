@@ -122,8 +122,8 @@ class pegawaiController extends BaseController
 
             // Retrieve additional alamat data from the POST request
             $alamat = $this->request->getPost('alamat');
-            $alamat_lat = floatval($this->request->getPost('alamat_lat'));
-            $alamat_lon = floatval($this->request->getPost('alamat_lon'));
+            $alamat_lat = floatval($this->request->getPost('latitude'));
+            $alamat_lon = floatval($this->request->getPost('longitude'));
             $kota = $this->request->getPost('kota');
             $kode_pos = $this->request->getPost('kode_pos');
 

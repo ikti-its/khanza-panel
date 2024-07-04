@@ -82,100 +82,100 @@ class AkunController extends BaseController
     }
 
     public function submitTambahAkun()
-{
-    if ($this->request->getMethod() === 'post') {
+    {
+        if ($this->request->getMethod() === 'post') {
 
-        // Retrieve the form data from the POST request
-        $email = $this->request->getPost('email');
-        $role = intval($this->request->getPost('role'));
-        $password = $this->request->getPost('password');
-        $file = $this->request->getFile('profilePhoto');
+            // Retrieve the form data from the POST request
+            $email = $this->request->getPost('email');
+            $role = intval($this->request->getPost('role'));
+            $password = $this->request->getPost('password');
+            $file = $this->request->getFile('profilePhoto');
 
-        if ($file && $file->isValid() && !$file->hasMoved()) {
-            log_message('debug', 'File is valid and not moved yet.');
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                log_message('debug', 'File is valid and not moved yet.');
 
-            $fileName = $file->getRandomName();
-            $file->move(ROOTPATH . 'public/uploads/', $fileName);
+                $fileName = $file->getRandomName();
+                $file->move(ROOTPATH . 'public/uploads/', $fileName);
 
-            $file_url = ROOTPATH . 'public/uploads/' . $fileName;
+                $file_url = ROOTPATH . 'public/uploads/' . $fileName;
 
-            $file_url2 = $this->uploadFileImg($file_url);
+                $file_url2 = $this->uploadFileImg($file_url);
 
-            // Delete the uploaded file if the final URL was successfully obtained
-            if ($file_url2) {
-                unlink($file_url); // Delete the file
-            }
-
-            // Prepare the data to be sent to the API
-            $postData = [
-                'email' => $email,
-                'role' => $role,
-                'password' => $password,
-                'foto' => $file_url2 // Use the URL obtained after uploading the file
-            ];
-
-            $tambah_akun_JSON = json_encode($postData);
-
-            $akun_url = $this->api_url . '/akun';
-
-            // Check if the JWT token is present
-            if (session()->has('jwt_token')) {
-                $token = session()->get('jwt_token');
-
-                // Initialize cURL session for sending the POST request
-                $ch = curl_init($akun_url);
-
-                // Set cURL options for sending a POST request
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $tambah_akun_JSON);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                    'Content-Type: application/json',
-                    'Content-Length: ' . strlen($tambah_akun_JSON),
-                    'Authorization: Bearer ' . $token,
-                ]);
-
-                // Execute the cURL request
-                $response = curl_exec($ch);
-
-                // Check if the API request was successful
-                if ($response) {
-                    // Check the HTTP status code in the response
-                    $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                    if ($http_status_code === 201) {
-                        // Account created successfully
-                        log_message('debug', 'Account created successfully.');
-                        return redirect()->to(base_url('dataakun?page=1&size=5'));
-                    } else {
-                        // Error response from the API
-                        log_message('error', 'Error creating account: ' . $response);
-                        return "Error creating account: " . $response;
-                    }
-                } else {
-                    // Error sending request to the API
-                    $error_message = curl_error($ch);
-                    log_message('error', 'Error sending request to the API: ' . $error_message);
-                    return "Error sending request to the API: " . $error_message;
+                // Delete the uploaded file if the final URL was successfully obtained
+                if ($file_url2) {
+                    unlink($file_url); // Delete the file
                 }
 
-                // Close the cURL session
-                curl_close($ch);
+                // Prepare the data to be sent to the API
+                $postData = [
+                    'email' => $email,
+                    'role' => $role,
+                    'password' => $password,
+                    'foto' => $file_url2 // Use the URL obtained after uploading the file
+                ];
+
+                $tambah_akun_JSON = json_encode($postData);
+
+                $akun_url = $this->api_url . '/akun';
+
+                // Check if the JWT token is present
+                if (session()->has('jwt_token')) {
+                    $token = session()->get('jwt_token');
+
+                    // Initialize cURL session for sending the POST request
+                    $ch = curl_init($akun_url);
+
+                    // Set cURL options for sending a POST request
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $tambah_akun_JSON);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                        'Content-Type: application/json',
+                        'Content-Length: ' . strlen($tambah_akun_JSON),
+                        'Authorization: Bearer ' . $token,
+                    ]);
+
+                    // Execute the cURL request
+                    $response = curl_exec($ch);
+
+                    // Check if the API request was successful
+                    if ($response) {
+                        // Check the HTTP status code in the response
+                        $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                        if ($http_status_code === 201) {
+                            // Account created successfully
+                            log_message('debug', 'Account created successfully.');
+                            return redirect()->to(base_url('dataakun?page=1&size=5'));
+                        } else {
+                            // Error response from the API
+                            log_message('error', 'Error creating account: ' . $response);
+                            return "Error creating account: " . $response;
+                        }
+                    } else {
+                        // Error sending request to the API
+                        $error_message = curl_error($ch);
+                        log_message('error', 'Error sending request to the API: ' . $error_message);
+                        return "Error sending request to the API: " . $error_message;
+                    }
+
+                    // Close the cURL session
+                    curl_close($ch);
+                } else {
+                    // JWT token is missing
+                    log_message('error', 'JWT token is missing.');
+                    return "JWT token is required.";
+                }
             } else {
-                // JWT token is missing
-                log_message('error', 'JWT token is missing.');
-                return "JWT token is required.";
+                // File upload failed
+                log_message('error', 'File upload failed.');
+                return "File upload failed. Please try again.";
             }
         } else {
-            // File upload failed
-            log_message('error', 'File upload failed.');
-            return "File upload failed. Please try again.";
+            log_message('error', 'Request method is not POST.');
+            return "Request method is not POST.";
         }
-    } else {
-        log_message('error', 'Request method is not POST.');
-        return "Request method is not POST.";
     }
-}
 
 
     private function uploadFileImg($file_path)
@@ -288,14 +288,29 @@ class AkunController extends BaseController
             $email = $this->request->getPost('email');
             $role = intval($this->request->getPost('role'));
             $password = $this->request->getPost('password');
-            $foto = $this->api_url . '/file/img/default.png';
+            $file = $this->request->getFile('profilePhoto');
 
-            // Prepare the data to be sent to the API
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                log_message('debug', 'File is valid and not moved yet.');
+
+                $fileName = $file->getRandomName();
+                $file->move(ROOTPATH . 'public/uploads/', $fileName);
+
+                $file_url = ROOTPATH . 'public/uploads/' . $fileName;
+
+                $file_url2 = $this->uploadFileImg($file_url);
+
+                // Delete the uploaded file if the final URL was successfully obtained
+                if ($file_url2) {
+                    unlink($file_url); // Delete the file
+                }
+
+                // Prepare the data to be sent to the API
             $postData = [
                 'email' => $email,
                 'role' => $role,
                 'password' => $password,
-                'foto' => $foto
+                'foto' => $file_url2
             ];
 
             $edit_akun_JSON = json_encode($postData);
@@ -351,6 +366,11 @@ class AkunController extends BaseController
                 // Email or role is empty
                 return "Email and role are required.";
             }
+
+
+            }
+
+            
         }
     }
 
