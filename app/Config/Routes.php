@@ -54,6 +54,10 @@ $routes->post('/submiteditjadwal/(:segment)', 'jadwalController::submitEditJadwa
 $routes->get('/lokasiorganisasi', 'lokasiController::dataLokasi', ['filter' => 'auth'] );
 $routes->post('/submiteditlokasi/(:segment)', 'lokasiController::submitEditLokasi/$1', ['filter' => 'auth']);
 
+$routes->get('/datafile', 'fileController::dataFile', ['filter' => 'auth']);
+
+$routes->post('/submittambahfile', 'fileController::submitUnggahFile', ['filter' => 'auth']);
+
 // $routes->get('/datapegawai', 'akunController::dataPegawai');
 
 

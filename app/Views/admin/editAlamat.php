@@ -27,7 +27,7 @@
             <!-- End Col -->
 
             <div class="sm:col-span-9">
-                <input id="af-id-akun" name="id_akun" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="36 characters uuid" value="<?= $userData['id_akun'] ?? '' ?>">
+                <input id="af-id-akun" name="id_akun" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="36 characters uuid" value="<?= $userData['id_akun'] ?? '' ?>">
             </div>
             <!-- End Col -->
 
@@ -40,7 +40,7 @@
 
             <div class="sm:col-span-9">
                 <div class="space-y-2">
-                    <input id="af-pegawai-alamat" name="alamat" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your alamat" value="<?= $userData['alamat'] ?? '' ?>">
+                    <input id="af-pegawai-alamat" name="alamat" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your alamat" value="<?= $userData['alamat'] ?? '' ?>">
                 </div>
             </div>
             <!-- End Col -->
@@ -54,7 +54,7 @@
 
             <div class="sm:col-span-9">
                 <div class="space-y-2">
-                    <input id="af-pegawai-alamat-lat" name="alamat_lat" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your alamat_lat" value="<?= $userData['alamat_lat'] ?? '' ?>">
+                    <input id="af-pegawai-alamat-lat" name="alamat_lat" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your alamat_lat" value="<?= $userData['alamat_lat'] ?? '' ?>">
                 </div>
             </div>
             <!-- End Col -->
@@ -68,7 +68,7 @@
 
             <div class="sm:col-span-9">
                 <div class="space-y-2">
-                    <input id="af-pegawai-alamat-lon" name="alamat_lon" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your alamat_lon" value="<?= $userData['alamat_lon'] ?? '' ?>">
+                    <input id="af-pegawai-alamat-lon" name="alamat_lon" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your alamat_lon" value="<?= $userData['alamat_lon'] ?? '' ?>">
                 </div>
             </div>
             <!-- End Col -->
@@ -83,7 +83,7 @@
 
             <div class="sm:col-span-9">
                 <div class="space-y-2">
-                    <input id="af-pegawai-kota" name="kota" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kota" value="<?= $userData['kota'] ?? '' ?>">
+                    <input id="af-pegawai-kota" name="kota" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kota" value="<?= $userData['kota'] ?? '' ?>">
                 </div>
             </div>
             <!-- End Col -->
@@ -97,7 +97,7 @@
 
             <div class="sm:col-span-9">
                 <div class="space-y-2">
-                    <input id="af-pegawai-kode-pos" name="kode_pos" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kode pos" value="<?= $userData['kode_pos'] ?? '' ?>">
+                    <input id="af-pegawai-kode-pos" name="kode_pos" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kode pos" value="<?= $userData['kode_pos'] ?? '' ?>">
                 </div>
             </div>
             <!-- End Col -->
@@ -110,7 +110,7 @@
         <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             Cancel
         </button>
-        <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+        <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             Save changes
         </button>
     </div>

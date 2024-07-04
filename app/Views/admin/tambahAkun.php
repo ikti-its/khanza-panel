@@ -7,10 +7,10 @@
     <div class="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
         <div class="mb-8">
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">
-                Profile
+                Profil
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                Manage your name, password and account settings.
+                Tambahkan akun
             </p>
         </div>
 
@@ -27,6 +27,21 @@
                 <div class="sm:col-span-9">
                     <div class="flex items-center gap-5">
                         <img id="preview-image" class="inline-block size-16 rounded-full ring-2 ring-white dark:ring-gray-800" src="https://api.fathoor.dev/v1/file/img/default.png" alt="Image Description">
+                        <div class="max-w-sm">
+                            <label class="block">
+                                <span class="sr-only">Ubah profil foto</span>
+                                <input id="profilePhoto" type="file" accept=".jpg, .png" class="block w-full text-sm text-gray-500
+                        file:me-4 file:py-2 file:px-4
+                        file:rounded-lg file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-teal-600 file:text-white
+                        hover:file:bg-teal-700
+                        file:disabled:opacity-50 file:disabled:pointer-events-none
+                        dark:text-neutral-500
+                        dark:file:bg-teal-500
+                        dark:hover:file:bg-teal-400">
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <!-- End Col -->
@@ -39,7 +54,7 @@
                 <!-- End Col -->
 
                 <div class="sm:col-span-9">
-                    <input id="af-account-email" name="email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="maria@site.com">
+                    <input id="af-account-email" name="email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="maria@site.com">
                 </div>
                 <!-- End Col -->
 
@@ -52,7 +67,7 @@
 
                 <div class="sm:col-span-9">
                     <div class="space-y-2">
-                        <input id="af-account-password" name="password" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter current password">
+                        <input id="af-account-password" name="password" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter current password">
                     </div>
                 </div>
                 <!-- End Col -->
@@ -68,7 +83,7 @@
 
                 <div class="sm:col-span-9">
                     <div class="sm:flex">
-                        <select name="role" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+                        <select name="role" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                             <option value="1337" selected>1337 (Developer)</option>
                             <option value="1">1 (admin)</option>
                             <option value="2">2 (pegawai)</option>
@@ -83,7 +98,7 @@
                 <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Cancel
                 </button>
-                <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Save changes
                 </button>
             </div>
@@ -94,3 +109,50 @@
 <!-- End Card Section -->
 
 <?= $this->endSection(); ?>
+
+<script>
+document.getElementById('profilePhoto').addEventListener('change', function() {
+    const fileInput = document.getElementById('profilePhoto');
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+
+    fetch('https://api.fathoor.dev/v1/file/img', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const previewImage = document.getElementById('preview-image');
+            previewImage.src = data.fileUrl;  // Adjust this based on your API response
+            document.getElementById('userForm').action = '/submittambahakun?profilePhoto=' + encodeURIComponent(data.fileUrl);
+        } else {
+            console.error('Upload failed:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+document.getElementById('userForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    fetch(this.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = '/success';
+        } else {
+            console.error('Submit failed:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+</script>

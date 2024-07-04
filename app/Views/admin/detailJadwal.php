@@ -27,7 +27,7 @@
                             <tr>
                                 <th scope="col" class="ps-6 py-3 text-start">
                                     <label for="hs-at-with-checkboxes-main" class="flex">
-                                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-main">
+                                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-main">
                                         <span class="sr-only">Checkbox</span>
                                     </label>
                                 </th>
@@ -95,7 +95,7 @@
                                         <td class="size-px whitespace-nowrap">
                                             <div class="ps-6 py-3">
                                                 <label for="hs-at-with-checkboxes-1" class="flex">
-                                                    <input type="checkbox" class="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
+                                                    <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
                                                     <span class="sr-only">Checkbox</span>
                                                 </label>
                                             </div>
@@ -144,7 +144,7 @@
 
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-1.5">
-                                                <a href="/editjadwal/<?= $jadwalEntry['id']?>" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+                                                <a href="/editjadwal/<?= $jadwalEntry['id']?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
                                                     Edit
                                                 </a>
                                             </div>

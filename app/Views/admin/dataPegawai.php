@@ -25,7 +25,7 @@
                                     View all
                                 </a>
 
-                                <a href='/tambahpegawai' class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+                                <a href='/tambahpegawai' class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
                                     <svg class="flex-shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                                     </svg>
@@ -42,7 +42,7 @@
                             <tr>
                                 <th scope="col" class="ps-6 py-3 text-start">
                                     <label for="hs-at-with-checkboxes-main" class="flex">
-                                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-main">
+                                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-main">
                                         <span class="sr-only">Checkbox</span>
                                     </label>
                                 </th>
@@ -101,7 +101,7 @@
                                     <td class="size-px whitespace-nowrap">
                                         <div class="ps-6 py-3">
                                             <label for="hs-at-with-checkboxes-1" class="flex">
-                                                <input type="checkbox" class="shrink-0 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
+                                                <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
                                                 <span class="sr-only">Checkbox</span>
                                             </label>
                                         </div>
@@ -124,7 +124,7 @@
 
                                     <td class="size-px whitespace-nowrap">
                                         <div class="px-6 py-1.5">
-                                            <button type="button" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-basic-modal-<?= $pegawaiEntry['id'] ?>">
+                                            <button type="button" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-basic-modal-<?= $pegawaiEntry['id'] ?>">
                                                 More Info
                                             </button>
 
@@ -155,7 +155,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['nip'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['nip'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -171,7 +171,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['id'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['id'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -187,7 +187,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['id_akun'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['id_akun'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -203,7 +203,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['nama'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['nama'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -219,7 +219,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jenis_kelamin'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jenis_kelamin'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -235,7 +235,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jabatan'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jabatan'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -251,7 +251,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['departemen'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['departemen'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -267,7 +267,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['status_aktif'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['status_aktif'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -283,7 +283,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jenis_pegawai'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['jenis_pegawai'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -299,7 +299,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['telepon'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['telepon'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -315,7 +315,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['tanggal_masuk'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $pegawaiEntry['tanggal_masuk'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -331,7 +331,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -347,7 +347,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat_lat'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat_lat'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -363,7 +363,7 @@
                                                                 <!-- End Col -->
 
                                                                 <div class="sm:col-span-9">
-                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat_lon'] ?? 'N/A' ?></span>
+                                                                    <span class="mx-28 py-5 px-3 block w-full border-gray-900 shadow-sm text-sm rounded-lg focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"><?= $alamatEntry['alamat_lon'] ?? 'N/A' ?></span>
                                                                 </div>
                                                                 <!-- End Col -->
                                                             </div>
@@ -378,7 +378,7 @@
 
                                     <td class="size-px whitespace-nowrap">
                                         <div class="px-6 py-1.5">
-                                            <a href="/editpegawai/<?= $pegawaiEntry['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+                                            <a href="/editpegawai/<?= $pegawaiEntry['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
                                                 Edit
                                             </a>
                                         </div>
