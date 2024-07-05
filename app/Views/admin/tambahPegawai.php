@@ -17,6 +17,9 @@
         <form action="/submittambahpegawai" method="post">
             <!-- Grid -->
 
+            <div class="sm:col-span-3">
+                    
+
 
             <div class="sm:col-span-3">
                 <label for="af-account-email" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
@@ -395,5 +398,16 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<?= getenv('api_map_key') ?>&callback=initMap" async defer></script>
+
+<script>
+    document.getElementById('profilePhoto').addEventListener('change', function(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var img = document.getElementById('preview-image');
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    });
+</script>
 
 <?= $this->endSection(); ?>

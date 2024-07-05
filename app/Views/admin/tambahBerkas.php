@@ -106,7 +106,7 @@
                     <select name="agama" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                         <option value="Lainnya" selected>Lainnya</option>
                         <option value="Kristen">Kristen</option>
-                        <option value="Khatolik">Khatolik</option>
+                        <option value="Katolik">Katolik</option>
                         <option value="Buddha">Buddha</option>
                         <option value="Islam">Islam</option>
                         <option value="Hindu">Hindu</option>
@@ -129,10 +129,14 @@
                 <div class="sm:flex">
                     <select name="pendidikan" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                         <option value="Tidak Sekolah" selected>Tidak Sekolah</option>
-                        <!-- <option value="1">1 Direktur</option>
-                        <option value="2">2 Manager</option>
-                        <option value="3">3 Supervisor</option>
-                        <option value="4">4 Staff</option> -->
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA">SMA</option>
+                        <option value="D3">D3</option>
+                        <option value="D4">D4</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
                     </select>
                 </div>
             </div>

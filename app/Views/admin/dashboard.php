@@ -563,6 +563,43 @@
             </div>
             <!-- End Card -->
 
+            <!-- Card -->
+            <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                <div class="px-5 py-5 flex flex-col justify-center items-start bg-white rounded-t-xl">
+                <svg width="200" height="150" viewBox="0 0 545 506" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M81.2182 376.168V334.604V286.2C81.2182 274.445 82.882 264.187 68.7314 263.381C54.5808 262.574 47.8424 278.593 23.5841 273.062C10.7814 270.142 1.31735e-05 257.157 0 241.944C-2.27537e-05 215.668 28.5187 199.813 55.9283 217.05C81.2182 232.955 81.2182 203.221 81.2182 193.54V129.156C81.2182 128.052 82.1136 127.156 83.2182 127.156H176.903C195.77 128.539 184.315 149.976 178.925 163.114C168.143 189.391 182.743 204.143 193.075 208.061C229.462 217.05 238.222 178.327 226.093 163.114C209.509 142.313 213.964 129.231 222.05 129.231H312.214C313.376 129.231 314.296 130.211 314.247 131.371C313.78 142.478 314.366 170.303 314.366 197.689C314.366 233.646 346.71 221.891 346.71 222.582C346.71 223.274 395.176 209.67 399.269 247.476C401.965 272.37 375.685 288.274 346.71 279.284C323.53 272.092 319.757 280.668 319.757 288.274V376.168C319.757 377.273 318.861 378.168 317.757 378.168H217.109C216.411 378.168 215.753 377.792 215.401 377.189C202.863 355.747 214.566 345.962 221.376 329.072C229.462 309.019 220.625 292.319 207.226 288.274C189.706 282.986 158.709 292.423 171.512 329.072C181.385 357.334 180.946 378.168 164.774 378.168H83.2182C82.1136 378.168 81.2182 377.273 81.2182 376.168Z" fill="#13594E" />
+                            <path d="M312.774 132.554H390.372C399.819 132.554 417.049 123.944 411.29 89.3872C405.217 52.9476 434.192 53.2509 446.378 57.6699C452.675 59.9214 463.382 69.4171 455.824 89.3872C446.378 114.35 452.451 133.925 472.019 133.925H540.194C541.299 133.925 542.194 134.821 542.194 135.925V372.775C542.194 373.887 541.316 374.786 540.204 374.776C528.763 374.672 471.536 374.187 461.222 374.794C449.751 375.469 451.742 387.986 458.523 403.809C468.645 427.426 458.186 456.243 424.11 450.368C404.542 446.994 396.445 426.076 404.542 403.809C412.639 381.542 403.193 374.794 394.421 374.794C376.599 374.794 334.908 374.569 317.14 374.794" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                            <path d="M323.212 451.043C327.485 458.465 336.302 474.525 337.382 479.383" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                            <path d="M306.342 455.092C304.093 461.165 302.968 479.248 316.464 503" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                            <path d="M280.34 428C271.568 436.097 253.619 454.991 252 465.787" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                            <path d="M309.042 41C317.814 32.9028 335.762 14.0094 337.382 3.21323" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                            <path d="M299.625 51C301.875 44.9271 302.999 26.8435 289.504 3.09177" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                            <path d="M273 32C268.726 24.5776 259.91 8.51822 258.83 3.65992" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        </svg>
+
+                </div>
+                <div class="p-4 md:p-6">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                        Unggah Foto Pegawai Presensi
+                    </h3>
+                    <p class="mt-3 font-medium text-gray-500 dark:text-neutral-500">
+                        Kelola Data File
+                    </p>
+                </div>
+
+
+                <div class="p-4 md:p-6">
+                    <a href="/datafile" class="group inline-flex items-center py-2 border border-transparent text-base font-medium rounded-md text-[#1D8676] bg-transparent hover:text-gray-200 transition duration-300">
+                        Kelola Unggahan File
+                        <svg class="ml-3 group-hover:stroke-gray-200 transition duration-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M8.90997 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.90997 4.08008" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+            <!-- End Card -->
+
            
         </div>
         <!-- End Grid -->

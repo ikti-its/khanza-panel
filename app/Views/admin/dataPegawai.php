@@ -61,8 +61,6 @@
                                     </div>
                                 </th>
 
-
-
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
                                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
@@ -72,12 +70,9 @@
                                 </th>
 
                                 <th scope="col" class="px-6 py-3 text-end"></th>
-
+                                <th scope="col" class="px-6 py-3 text-end"></th>
                             </tr>
                         </thead>
-
-
-
 
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
 
@@ -89,8 +84,8 @@
                                 foreach ($alamat_data as $alamat) {
                                     if ($alamat['id_akun'] === $pegawaiEntry['id_akun']) {
                                         $alamatEntry = $alamat;
-                                        
-                                        
+
+
                                         break;
                                     }
                                 }
@@ -119,12 +114,10 @@
                                         </div>
                                     </td>
 
-
-
                                     <td class="size-px whitespace-nowrap">
                                         <div class="px-6 py-1.5">
                                             <button type="button" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-basic-modal-<?= $pegawaiEntry['id'] ?>">
-                                                More Info
+                                                Info Detail
                                             </button>
 
                                             <div id="hs-basic-modal-<?= $pegawaiEntry['id'] ?>" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden size-full fixed top-0 start-0 z-[80] opacity-0 overflow-x-hidden transition-all overflow-y-auto pointer-events-none">

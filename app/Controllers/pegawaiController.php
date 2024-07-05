@@ -126,111 +126,165 @@ class pegawaiController extends BaseController
             $alamat_lon = floatval($this->request->getPost('longitude'));
             $kota = $this->request->getPost('kota');
             $kode_pos = $this->request->getPost('kode_pos');
+  
+                // Prepare the data to be sent to the API for pegawai
+                $pegawaiData = [
+                    'id_akun' => $id_akun,
+                    'nip' => $nip,
+                    'nama' => $nama,
+                    'jenis_kelamin' => $jenis_kelamin,
+                    'jabatan' => $jabatan,
+                    'departemen' => $departemen,
+                    'status_aktif' => $status_aktif,
+                    'jenis_pegawai' => $jenis_pegawai,
+                    'telepon' => $telepon,
+                    'tanggal_masuk' => $tanggal_masuk
+                ];
 
-            // Prepare the data to be sent to the API for pegawai
-            $pegawaiData = [
-                'id_akun' => $id_akun,
-                'nip' => $nip,
-                'nama' => $nama,
-                'jenis_kelamin' => $jenis_kelamin,
-                'jabatan' => $jabatan,
-                'departemen' => $departemen,
-                'status_aktif' => $status_aktif,
-                'jenis_pegawai' => $jenis_pegawai,
-                'telepon' => $telepon,
-                'tanggal_masuk' => $tanggal_masuk
-            ];
+                // Prepare the data to be sent to the API for alamat
+                $alamatData = [
+                    'id_akun' => $id_akun,
+                    'alamat' => $alamat,
+                    'alamat_lat' => $alamat_lat,
+                    'alamat_lon' => $alamat_lon,
+                    'kota' => $kota,
+                    'kode_pos' => $kode_pos
+                ];
 
-            // Prepare the data to be sent to the API for alamat
-            $alamatData = [
-                'id_akun' => $id_akun,
-                'alamat' => $alamat,
-                'alamat_lat' => $alamat_lat,
-                'alamat_lon' => $alamat_lon,
-                'kota' => $kota,
-                'kode_pos' => $kode_pos
-            ];
+                $pegawai_JSON = json_encode($pegawaiData);
+                $alamat_JSON = json_encode($alamatData);
+            
 
-            $pegawai_JSON = json_encode($pegawaiData);
-            $alamat_JSON = json_encode($alamatData);
+                $pegawai_url = $this->api_url . '/pegawai';
+                $alamat_url = $this->api_url . '/akun/alamat';
+                
 
-            $pegawai_url = $this->api_url . '/pegawai';
-            $alamat_url = $this->api_url . '/akun/alamat';
+                // Check if JWT token is present
+                if (session()->has('jwt_token')) {
+                    $token = session()->get('jwt_token');
 
-            // Check if JWT token is present
-            if (session()->has('jwt_token')) {
-                $token = session()->get('jwt_token');
+                    // Initialize cURL session for pegawai data
+                    $ch_pegawai = curl_init($pegawai_url);
+                    curl_setopt($ch_pegawai, CURLOPT_POST, 1);
+                    curl_setopt($ch_pegawai, CURLOPT_POSTFIELDS, $pegawai_JSON);
+                    curl_setopt($ch_pegawai, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch_pegawai, CURLOPT_HTTPHEADER, [
+                        'Content-Type: application/json',
+                        'Content-Length: ' . strlen($pegawai_JSON),
+                        'Authorization: Bearer ' . $token,
+                    ]);
 
-                // Initialize cURL session for pegawai data
-                $ch_pegawai = curl_init($pegawai_url);
-                curl_setopt($ch_pegawai, CURLOPT_POST, 1);
-                curl_setopt($ch_pegawai, CURLOPT_POSTFIELDS, $pegawai_JSON);
-                curl_setopt($ch_pegawai, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch_pegawai, CURLOPT_HTTPHEADER, [
-                    'Content-Type: application/json',
-                    'Content-Length: ' . strlen($pegawai_JSON),
-                    'Authorization: Bearer ' . $token,
-                ]);
+                    // Execute the cURL request for pegawai data
+                    $response_pegawai = curl_exec($ch_pegawai);
 
-                // Execute the cURL request for pegawai data
-                $response_pegawai = curl_exec($ch_pegawai);
+                    // Check if the API request was successful for pegawai data
+                    if ($response_pegawai) {
+                        $http_status_code_pegawai = curl_getinfo($ch_pegawai, CURLINFO_HTTP_CODE);
 
-                // Check if the API request was successful for pegawai data
-                if ($response_pegawai) {
-                    $http_status_code_pegawai = curl_getinfo($ch_pegawai, CURLINFO_HTTP_CODE);
+                        // Close the cURL session for pegawai data
+                        curl_close($ch_pegawai);
 
-                    // Close the cURL session for pegawai data
-                    curl_close($ch_pegawai);
+                        if ($http_status_code_pegawai === 201) {
+                            // Account created successfully for pegawai data
 
-                    if ($http_status_code_pegawai === 201) {
-                        // Account created successfully for pegawai data
+                            // Initialize cURL session for alamat data
+                            $ch_alamat = curl_init($alamat_url);
+                            curl_setopt($ch_alamat, CURLOPT_POST, 1);
+                            curl_setopt($ch_alamat, CURLOPT_POSTFIELDS, $alamat_JSON);
+                            curl_setopt($ch_alamat, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch_alamat, CURLOPT_HTTPHEADER, [
+                                'Content-Type: application/json',
+                                'Content-Length: ' . strlen($alamat_JSON),
+                                'Authorization: Bearer ' . $token,
+                            ]);
 
-                        // Initialize cURL session for alamat data
-                        $ch_alamat = curl_init($alamat_url);
-                        curl_setopt($ch_alamat, CURLOPT_POST, 1);
-                        curl_setopt($ch_alamat, CURLOPT_POSTFIELDS, $alamat_JSON);
-                        curl_setopt($ch_alamat, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt($ch_alamat, CURLOPT_HTTPHEADER, [
-                            'Content-Type: application/json',
-                            'Content-Length: ' . strlen($alamat_JSON),
-                            'Authorization: Bearer ' . $token,
-                        ]);
+                            // Execute the cURL request for alamat data
+                            $response_alamat = curl_exec($ch_alamat);
 
-                        // Execute the cURL request for alamat data
-                        $response_alamat = curl_exec($ch_alamat);
+                            // Check if the API request was successful for alamat data
+                            if ($response_alamat) {
+                                $http_status_code_alamat = curl_getinfo($ch_alamat, CURLINFO_HTTP_CODE);
 
-                        // Check if the API request was successful for alamat data
-                        if ($response_alamat) {
-                            $http_status_code_alamat = curl_getinfo($ch_alamat, CURLINFO_HTTP_CODE);
+                                // Close the cURL session for alamat data
+                                curl_close($ch_alamat);
 
-                            // Close the cURL session for alamat data
-                            curl_close($ch_alamat);
+                                if ($http_status_code_alamat === 201) {
+                                    // Account created successfully for alamat data
 
-                            if ($http_status_code_alamat === 201) {
-                                // Account created successfully for alamat data
-
-                                // Redirect to a success page or perform any other necessary action
-                                return redirect()->to(base_url('datapegawai?page=1&size=5'));
+                                    // Redirect to a success page or perform any other necessary action
+                                    return redirect()->to(base_url('datapegawai?page=1&size=5'));
+                                } else {
+                                    // Error response from the API for alamat data
+                                    return "Error creating alamat: " . $alamat_JSON;
+                                }
                             } else {
-                                // Error response from the API for alamat data
-                                return "Error creating alamat: " . $alamat_JSON;
+                                // Error sending request to the API for alamat data
+                                return "Error sending request to the API for alamat data.";
                             }
                         } else {
-                            // Error sending request to the API for alamat data
-                            return "Error sending request to the API for alamat data.";
+                            // Error response from the API for pegawai data
+                            return "Error creating pegawai account: " . $pegawai_JSON;
                         }
                     } else {
-                        // Error response from the API for pegawai data
-                        return "Error creating pegawai account: " . $pegawai_JSON;
+                        // Error sending request to the API for pegawai data
+                        return "Error sending request to the API for pegawai data.";
                     }
                 } else {
-                    // Error sending request to the API for pegawai data
-                    return "Error sending request to the API for pegawai data.";
+                    // JWT token is not present
+                    return "JWT token is required.";
                 }
-            } else {
-                // JWT token is not present
-                return "JWT token is required.";
+            
+        }
+    }
+
+    private function uploadFileImg($file_path)
+    {
+        // Check if the file exists
+        if (!file_exists($file_path)) {
+            return "Error: File not found.";
+        }
+
+        // Check if JWT token is provided
+        if (session()->has('jwt_token')) {
+            $token = session()->get('jwt_token');
+
+            // Initialize cURL session for sending the POST request to upload the image
+            $ch = curl_init($this->api_url . '/file/img');
+
+            // Set cURL options for sending a POST request to upload the image
+            $file_data = ['file' => new \CurlFile($file_path)]; // Create CurlFile object with the file path
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $file_data); // Send as multipart form data
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $token,
+            ]);
+
+            // Execute the cURL request to upload the image
+            $response = curl_exec($ch);
+
+            // Check for errors
+            if (curl_errno($ch)) {
+                $error_message = curl_error($ch);
+                curl_close($ch);
+                return "Error uploading image: " . $error_message;
             }
+
+            // Close the cURL session
+            curl_close($ch);
+
+            // Decode the response
+            $responseData = json_decode($response, true);
+
+            // Check if the response contains URL
+            if (isset($responseData['data']['url'])) {
+                return $responseData['data']['url']; // Return the URL of the uploaded image
+            } else {
+                return "Error uploading image: Response does not contain URL. $response";
+            }
+        } else {
+            // JWT token is not provided
+            return "Error: JWT token is required.";
         }
     }
 

@@ -110,9 +110,9 @@
                                         </td>
                                         <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <a   href="/detailpegawai/<?=$jadwalEntry['id_pegawai']?>">
-                                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200 hover:underline"><?= $jadwalEntry['id_pegawai'] ?? 'N/A' ?></span>
-                                                </a>
+                                               
+                                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['id_pegawai'] ?? 'N/A' ?></span>
+                                           
                                              
                                             </div>
                                         </td>

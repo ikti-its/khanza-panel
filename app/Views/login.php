@@ -17,7 +17,7 @@
 </style>
 </head>
 
-<body class="bg-svg font-gilroy">
+<body class="bg-svg">
 
     <div class="min-h-screen flex items-center justify-center">
         <form action="dashboard" method="post" class="w-full max-w-md">
