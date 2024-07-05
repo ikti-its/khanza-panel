@@ -444,6 +444,10 @@ video {
   display: none;
 }
 
+html {
+  font-family: Gilroy-Regular, sans-serif;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -1786,6 +1790,16 @@ video {
 
 .\[--placement\:top-left\] {
   --placement: top-left;
+}
+
+@font-face {
+  font-family: 'Gilroy-Regular';
+
+  src: url('../fonts/gilroy/Gilroy-Regular.woff') format('woff');
+
+  font-weight: normal;
+
+  font-style: normal;
 }
 
 .file\:me-4::file-selector-button {

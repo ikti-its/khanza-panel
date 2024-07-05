@@ -19,10 +19,7 @@
 
                         <div>
                             <div class="inline-flex gap-x-2">
-                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-                                    View all
-                                </a>
-
+            
                                 <a href='/tambahcuti' class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
                                     <svg class="flex-shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -48,54 +45,20 @@
                                 <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
                                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            ID
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
                                             ID Pegawai
                                         </span>
                                     </div>
                                 </th>
 
-
-                                <th scope="col" class="px-6 py-3 text-start">
+                                <!-- <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
                                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            ID Hari
+                                            ID Pegawai
                                         </span>
                                     </div>
-                                </th>
+                                </th> -->
 
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            ID Shift
-                                        </span>
-                                    </div>
-                                </th>
 
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Jam Masuk
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                            Jam Pulang
-                                        </span>
-                                    </div>
-                                </th>
-
-                                <th scope="col" class="px-6 py-3 text-end"></th>
-                                <th scope="col" class="px-6 py-3 text-end"></th>
                             </tr>
                         </thead>
 
@@ -113,16 +76,16 @@
                                                 </label>
                                             </div>
                                         </td>
-
+<!-- 
                                         <td class="size-px whitespace-nowrap">
                                             <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                                                 <div class="flex items-center gap-x-3">
                                                 <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['id'] ?? 'N/A' ?></span>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3">
+                                        </td> -->
+                                        <td class="h-px w-48 whitespace-nowrap">
+                                            <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                                                 <a   href="/detailjadwal/<?=$jadwalEntry['id_pegawai']?>">
                                                 <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200 hover:underline"><?= $jadwalEntry['id_pegawai'] ?? 'N/A' ?></span>
                                                 </a>
@@ -130,46 +93,6 @@
                                             </div>
                                         </td>
 
-                                        <td class="h-px w-72 whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['id_hari'] ?? 'N/A' ?></span>
-                                            </div>
-                                        </td>
-
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['id_shift'] ?? 'N/A' ?></span>
-                                            </div>
-                                        </td>
-
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['jam_masuk'] ?? 'N/A' ?></span>
-                                            </div>
-                                        </td>
-
-
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['jam_pulang'] ?? 'N/A' ?></span>
-                                            </div>
-                                        </td>
-
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-1.5">
-                                                <a href="/editjadwal/<?= $jadwalEntry['id']?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-                                                    Edit
-                                                </a>
-                                            </div>
-                                        </td>
-
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-1.5">
-                                                <a  href ="/hapusjadwal/<?= $jadwalEntry['id'] ?>"class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-                                                    Delete
-                                                </a>
-                                            </div>
-                                        </td>
                                     </tr>
 
                                 <?php endforeach; ?>
