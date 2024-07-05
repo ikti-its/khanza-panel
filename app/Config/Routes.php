@@ -129,6 +129,9 @@ $routes->get('/konfirmasifotopegawai', 'fileController::konfirmasiFotoPegawai', 
 
 $routes->post('/submitkonfirmasitambahfoto', 'fileController::submitKonfirmasiFotoPegawai', ['filter' => 'auth']);
 
+$routes->get('/editfotopegawai/(:any)', 'fileController::editFotoPegawai/$1', ['filter' => 'auth']);
+$routes->post('/submiteditfotopegawai/(:segment)', 'fileController::submitEditFotoPegawai/$1', ['filter' => 'auth']);
 
+$routes->get('/hapusfotopegawai/(:segment)', 'fileController::hapusFotoPegawai/$1', ['filter' => 'auth']);
 
 ?>

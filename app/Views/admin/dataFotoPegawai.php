@@ -115,14 +115,14 @@
             </td>
             <td class="size-px whitespace-nowrap">
                 <div class="px-6 py-1.5">
-                    <a href="/editakun/<?= $data['pegawai']['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    <a href="/editfotopegawai/<?= $data['pegawai']['id']?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                         Edit
                     </a>
                 </div>
             </td>
             <td class="size-px whitespace-nowrap">
                 <div class="px-6 py-1.5">
-                    <a href="/hapusakun/<?= $data['pegawai']['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    <a href="/hapusfotopegawai/<?= $data['pegawai']['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                         Delete
                     </a>
                 </div>
@@ -141,7 +141,7 @@
                         <!-- Pagination -->
                         <nav class="flex items-center gap-x-1">
                             <?php if ($meta_data['page'] > 1) : ?>
-                                <a href="/dataakun?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                <a href="/datafotopegawai?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
                                     <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m15 18-6-6 6-6" />
                                     </svg>
@@ -156,7 +156,7 @@
                             </div>
 
                             <?php if ($meta_data['page'] < $meta_data['total']) : ?>
-                                <a href="/dataakun?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                <a href="/datafotopegawai?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
                                     <span aria-hidden="true" class="sr-only">Next</span>
                                     <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m9 18 6-6-6-6" />
@@ -177,13 +177,13 @@
                             </button>
                             <div id="dropdown" class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-48 hidden z-50 transition-[margin,opacity] opacity-0 duration-300 mb-2 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700" aria-labelledby="hs-small-pagination-dropdown">
 
-                                <a href="/dataakun?page=1&size=5">
+                                <a href="/datafotopegawai?page=1&size=5">
                                     <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
                                         5 page
                                     </button>
                                 </a>
 
-                                <a href="/dataakun?page=1&size=10">
+                                <a href="/datafotopegawai?page=1&size=10">
                                     <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
                                         10 page
                                     </button>
