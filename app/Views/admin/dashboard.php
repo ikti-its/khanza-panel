@@ -604,7 +604,7 @@
 
 
                 <div class="p-4 md:p-6">
-                    <a href="/datafile" class="group inline-flex items-center py-2 border border-transparent text-base font-medium rounded-md text-[#1D8676] bg-transparent hover:text-gray-200 transition duration-300">
+                    <a href="/datafotopegawai" class="group inline-flex items-center py-2 border border-transparent text-base font-medium rounded-md text-[#1D8676] bg-transparent hover:text-gray-200 transition duration-300">
                         Kelola Unggahan Foto Presensi
                         <svg class="ml-3 group-hover:stroke-gray-200 transition duration-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M8.90997 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.90997 4.08008" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />

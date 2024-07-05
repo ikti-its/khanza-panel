@@ -121,4 +121,14 @@ $routes->post('/submiteditserkom/(:segment)', 'berkasController::submitEditSerko
 
 $routes->get('/hapusberkas/(:segment)', 'berkasController::hapusBerkas/$1', ['filter' => 'auth']);
 
+$routes->get('/datafotopegawai', 'fileController::dataFotoPegawai', ['filter' => 'auth'] );
+$routes->get('/tambahfotopegawai', 'fileController::tambahFotoPegawai', ['filter' => 'auth'] );
+$routes->post('/submittambahfotopegawai', 'fileController::submitHasilFoto', ['filter' => 'auth']);
+
+$routes->get('/konfirmasifotopegawai', 'fileController::konfirmasiFotoPegawai', ['filter' => 'auth'] );
+
+$routes->post('/submitkonfirmasitambahfoto', 'fileController::submitKonfirmasiFotoPegawai', ['filter' => 'auth']);
+
+
+
 ?>
