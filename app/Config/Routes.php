@@ -134,4 +134,6 @@ $routes->post('/submiteditfotopegawai/(:segment)', 'fileController::submitEditFo
 
 $routes->get('/hapusfotopegawai/(:segment)', 'fileController::hapusFotoPegawai/$1', ['filter' => 'auth']);
 
+$routes->get('/datakehadiran', 'kehadiranController::dataKehadiran', ['filter' => 'auth'] );
+
 ?>

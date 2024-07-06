@@ -93,11 +93,10 @@
             <div class="sm:col-span-9">
                 <div class="sm:flex">
                     <select name="jabatan" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="1000" selected>1000 Testing</option>
-                        <option value="1">1 Direktur</option>
-                        <option value="2">2 Manager</option>
-                        <option value="3">3 Supervisor</option>
-                        <option value="4">4 Staff</option>
+                        <option value="1000" selected>1000 Kepala Departemen</option>
+                        <option value="1001">1001 Wakil Kepala Departemen</option>
+                        <option value="1002">1002 Pegawai</option>
+
                     </select>
                 </div>
             </div>
@@ -115,11 +114,12 @@
             <div class="sm:col-span-9">
                 <div class="sm:flex">
                     <select name="departemen" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="1000" selected>1000 Testing</option>
-                        <option value="1">1 HRD</option>
-                        <option value="2">2 Marketing</option>
-                        <option value="3">3 Keuangan</option>
-                        <option value="4">4 Operasional</option>
+                        <option value="1000" selected>(1000 Pelayanan Medik dan Keperawatan)</option>
+                        <option value="1001">1001 (Pelayanan Penunjang Medik)</option>
+                        <option value="2000">2000 (SDM Pendidikan dan Penelitian)</option>
+                        <option value="2001">2001 (Perencanaan dan Evaluasi)</option>
+                        <option value="2002">2002 (Keuangan dan BMN)</option>
+                        <option value="2003">2003 (Organisasi dan Umum)</option>
                     </select>
                 </div>
             </div>

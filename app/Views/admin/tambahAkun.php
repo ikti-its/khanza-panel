@@ -87,6 +87,15 @@
                             <option value="1337" selected>1337 (Developer)</option>
                             <option value="1">1 (admin)</option>
                             <option value="2">2 (pegawai)</option>
+                            <option value="3">3 (Kepala Departemen)</option>
+                            <option value="4000">4000 (Kepala Inventaris)</option>
+                            <option value="4001">4001 (Apoteker)</option>
+                            <option value="4002">4002 (Inventaris)</option>
+                            <option value="4003">4003 (Pengadaan)</option>
+                            <option value="4004">4004 (Gudang)</option>
+                            <option value="5000">5000 (Kepala Keuangan)</option>
+                            <option value="5001">5001 (Keuangan)</option>
+                   
                         </select>
                     </div>
                 </div>
