@@ -36,7 +36,7 @@
                         <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                             <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
                                 <h3 class="font-bold text-gray-800 dark:text-white">
-                                    Hasil swafoto
+                                    Hasil pengambilan foto
                                 </h3>
                                 <button type="button" class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700" data-hs-overlay="#hs-basic-modal">
                                     <span class="sr-only">Close</span>
@@ -54,7 +54,7 @@
                                     Batal
                                 </button>
                                 <form id="photo-form" action="/submiteditfotopegawai/<?= $userData['id_pegawai'] ?>" method="post" enctype="multipart/form-data">
-                                    <!-- <input id="af-account-password" name="id_pegawai" type="text" value="<?= $userData['id_pegawai'] ?>"> -->
+                                    <input id="af-account-password" name="id_pegawai" type="hidden" value="<?= $userData['id_pegawai'] ?>">
                                     <button id="save-changes-btn" type="submit" class="flex-1 py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#0A2D27] text-[#ACF2E7] hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none">
                                         Simpan
                                     </button>

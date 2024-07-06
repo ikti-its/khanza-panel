@@ -460,7 +460,7 @@ class FileController extends BaseController
             $foto_url2 = $this->uploadFileImg($foto_url);
 
             // Delete the temporary uploaded file
-            unlink($foto_url);
+            unlink($foto_url); // Corrected this line to unlink the right file
 
             if ($foto_url2) {
                 // Prepare the data to be sent to the API
@@ -535,6 +535,7 @@ class FileController extends BaseController
         return "No POST data received.";
     }
 }
+
 
 public function hapusFotoPegawai($pegawaiId)
     {

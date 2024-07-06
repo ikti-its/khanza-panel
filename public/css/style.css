@@ -700,16 +700,16 @@ html {
   margin: -0.5rem;
 }
 
-.m-3 {
-  margin: 0.75rem;
-}
-
 .-m-3 {
   margin: -0.75rem;
 }
 
 .-m-3\.5 {
   margin: -0.875rem;
+}
+
+.m-3 {
+  margin: 0.75rem;
 }
 
 .mx-28 {
@@ -927,6 +927,10 @@ html {
   height: 2.5rem;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .h-36 {
   height: 9rem;
 }
@@ -951,20 +955,16 @@ html {
   height: 72%;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
 
 .h-px {
   height: 1px;
-}
-
-.h-auto {
-  height: auto;
-}
-
-.h-16 {
-  height: 4rem;
 }
 
 .max-h-full {
@@ -1027,6 +1027,10 @@ html {
   min-width: 100%;
 }
 
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -1047,16 +1051,12 @@ html {
   max-width: 24rem;
 }
 
-.max-w-2xl {
-  max-width: 42rem;
+.flex-1 {
+  flex: 1 1 0%;
 }
 
 .flex-none {
   flex: none;
-}
-
-.flex-1 {
-  flex: 1 1 0%;
 }
 
 .flex-shrink-0 {
@@ -1304,6 +1304,11 @@ html {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
 .border-gray-900 {
   --tw-border-opacity: 1;
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
@@ -1311,11 +1316,6 @@ html {
 
 .border-transparent {
   border-color: transparent;
-}
-
-.border-gray-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
 .bg-\[\#0A2D27\] {
@@ -1567,6 +1567,11 @@ html {
   vertical-align: middle;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1599,11 +1604,6 @@ html {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .font-bold {
@@ -1891,17 +1891,9 @@ html {
   border-top-right-radius: 0.5rem;
 }
 
-.first\:pt-0:first-child {
-  padding-top: 0px;
-}
-
 .last\:rounded-b-lg:last-child {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-}
-
-.last\:pb-0:last-child {
-  padding-bottom: 0px;
 }
 
 .focus-within\:outline-none:focus-within {
@@ -2661,14 +2653,14 @@ html {
     padding-right: 2rem;
   }
 
-  .md\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 }
 

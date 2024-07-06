@@ -150,13 +150,13 @@
                                             </div>
                                         </td>
 
-                                        <td class="size-px whitespace-nowrap">
+                                        <!-- <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-1.5">
                                                 <a  href ="/hapuscuti/<?= $jadwalEntry['id'] ?>"class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
                                                     Delete
                                                 </a>
                                             </div>
-                                        </td>
+                                        </td> -->
                                     </tr>
 
                                 <?php endforeach; ?>

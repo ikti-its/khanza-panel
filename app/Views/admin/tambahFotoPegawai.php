@@ -24,8 +24,12 @@
         <div class="py-2 mb-2 mx-6 flex justify-center items-center">
             <!-- Buttons -->
             <div class="mt-6 flex justify-center gap-x-3 w-full">
+                
                 <button class="flex-1 py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle text-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-teal-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
-                    Batal
+                <a href="/datafotopegawai">
+                Batal
+                </a>   
+              
                 </button>
                 <button id="capture-btn" data-hs-overlay="#hs-basic-modal" class=" flex-1 py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#0A2D27] text-[#ACF2E7] text-center hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none">
                     Gunakan Foto
@@ -36,7 +40,7 @@
                         <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                             <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
                                 <h3 class="font-bold text-gray-800 dark:text-white">
-                                    Hasil swafoto
+                                    Hasil pengambilan foto
                                 </h3>
                                 <button type="button" class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700" data-hs-overlay="#hs-basic-modal">
                                     <span class="sr-only">Close</span>
@@ -50,6 +54,7 @@
                                 <img id="photo-preview" class="rounded-lg">
                             </div>
                             <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
+
                                 <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800" data-hs-overlay="#hs-basic-modal">
                                     Batal
                                 </button>
