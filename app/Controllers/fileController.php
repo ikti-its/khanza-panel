@@ -435,131 +435,143 @@ class FileController extends BaseController
     }
 
     public function submitEditFotoPegawai($userId)
-{
-    if ($this->request->getPost()) {
+    {
+        if ($this->request->getPost()) {
 
-        // Retrieve the form data from the POST request
-        $id_pegawai = $this->request->getPost('id_pegawai');
-        $base64Image = $this->request->getPost('photo');
+            // Retrieve the form data from the POST request
+            $id_pegawai = $this->request->getPost('id_pegawai');
+            $base64Image = $this->request->getPost('photo');
 
-        // Decode the base64 image data
-        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+            // Decode the base64 image data
+            $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
 
-        // Generate a unique name for the image file
-        $imageFileName = uniqid() . '.png';
+            // Generate a unique name for the image file
+            $imageFileName = uniqid() . '.png';
 
-        // Define the path to save the image file
-        $imageFilePath = ROOTPATH . 'public/uploads/' . $imageFileName;
+            // Define the path to save the image file
+            $imageFilePath = ROOTPATH . 'public/uploads/' . $imageFileName;
 
-        // Save the decoded image data to a file
-        if (file_put_contents($imageFilePath, $imageData)) {
-            // Obtain the file path after saving
-            $foto_url = $imageFilePath;
+            // Save the decoded image data to a file
+            if (file_put_contents($imageFilePath, $imageData)) {
+                // Obtain the file path after saving
+                $foto_url = $imageFilePath;
 
-            // Call the uploadFileImg method to upload the file and get the URL
-            $foto_url2 = $this->uploadFileImg($foto_url);
+                // Call the uploadFileImg method to upload the file and get the URL
+                $foto_url2 = $this->uploadFileImg($foto_url);
 
-            // Delete the temporary uploaded file
-            unlink($foto_url); // Corrected this line to unlink the right file
-
-            if ($foto_url2) {
-                // Prepare the data to be sent to the API
-                $postData = [
-                    'id_pegawai' => $id_pegawai,
-                    'foto' => $foto_url2,
-                ];
-
-                $edit_akun_JSON = json_encode($postData);
-
-                // Proceed with API request
-                $akun_url = $this->api_url . '/pegawai/foto/' . $userId;
-
-                // Check if JWT token is present
-                if (session()->has('jwt_token')) {
-                    $token = session()->get('jwt_token');
-
-                    // Initialize cURL session for sending the PUT request
-                    $ch = curl_init($akun_url);
-
-                    // Set cURL options for sending a PUT request
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $edit_akun_JSON);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                        'Content-Type: application/json',
-                        'Content-Length: ' . strlen($edit_akun_JSON),
-                        'Authorization: Bearer ' . $token,
-                    ]);
-
-                    // Execute the cURL request
-                    $response = curl_exec($ch);
-
-                    // Check if the API request was successful
-                    if ($response) {
-                        // Check the HTTP status code in the response
-                        $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                        if ($http_status_code === 200) {
-                            // Account updated successfully
-                            return redirect()->to(base_url('datafotopegawai?page=1&size=5'));
-                        } else {
-                            // Error response from the API
-                            log_message('error', 'Error updating account: ' . $response);
-                            return "Error updating account: " . $response;
-                        }
+                // Delete the temporary uploaded file
+                if (file_exists($foto_url)) {
+                    if (unlink($foto_url)) {
+                        // File deleted successfully
+                        // Continue with your code
                     } else {
-                        // Error sending request to the API
-                        $error_message = curl_error($ch);
-                        log_message('error', 'Error sending request to the API: ' . $error_message);
-                        return "Error sending request to the API: " . $error_message;
+                        // Failed to delete the file
+                        return redirect()->back()->with('error', 'Failed to delete temporary file.');
                     }
-
-                    // Close the cURL session
-                    curl_close($ch);
                 } else {
-                    // JWT token is missing
-                    log_message('error', 'JWT token is missing.');
-                    return "JWT token is required.";
+                    // File does not exist at the expected path
+                    return redirect()->back()->with('error', 'File not found at: ' . $foto_url);
+                }
+
+
+                if ($foto_url2) {
+                    // Prepare the data to be sent to the API
+                    $postData = [
+                        'id_pegawai' => $id_pegawai,
+                        'foto' => $foto_url2,
+                    ];
+
+                    $edit_akun_JSON = json_encode($postData);
+
+                    // Proceed with API request
+                    $akun_url = $this->api_url . '/pegawai/foto/' . $userId;
+
+                    // Check if JWT token is present
+                    if (session()->has('jwt_token')) {
+                        $token = session()->get('jwt_token');
+
+                        // Initialize cURL session for sending the PUT request
+                        $ch = curl_init($akun_url);
+
+                        // Set cURL options for sending a PUT request
+                        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $edit_akun_JSON);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                            'Content-Type: application/json',
+                            'Content-Length: ' . strlen($edit_akun_JSON),
+                            'Authorization: Bearer ' . $token,
+                        ]);
+
+                        // Execute the cURL request
+                        $response = curl_exec($ch);
+
+                        // Check if the API request was successful
+                        if ($response) {
+                            // Check the HTTP status code in the response
+                            $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                            if ($http_status_code === 200) {
+                                // Account updated successfully
+                                return redirect()->to(base_url('datafotopegawai?page=1&size=5'));
+                            } else {
+                                // Error response from the API
+                                log_message('error', 'Error updating account: ' . $response);
+                                return "Error updating account: " . $response;
+                            }
+                        } else {
+                            // Error sending request to the API
+                            $error_message = curl_error($ch);
+                            log_message('error', 'Error sending request to the API: ' . $error_message);
+                            return "Error sending request to the API: " . $error_message;
+                        }
+
+                        // Close the cURL session
+                        curl_close($ch);
+                    } else {
+                        // JWT token is missing
+                        log_message('error', 'JWT token is missing.');
+                        return "JWT token is required.";
+                    }
+                } else {
+                    // Failed to get photo URL after upload
+                    return redirect()->back()->with('error', 'Failed to get photo URL after upload.');
                 }
             } else {
-                // Failed to get photo URL after upload
-                return redirect()->back()->with('error', 'Failed to get photo URL after upload.');
+                // Failed to save the photo file
+                return redirect()->back()->with('error', 'Failed to save the photo file.');
             }
         } else {
-            // Failed to save the photo file
-            return redirect()->back()->with('error', 'Failed to save the photo file.');
+            // No POST data received
+            log_message('error', 'No POST data received.');
+            return "No POST data received.";
         }
-    } else {
-        // No POST data received
-        log_message('error', 'No POST data received.');
-        return "No POST data received.";
     }
-}
 
 
-public function hapusFotoPegawai($pegawaiId)
+    public function hapusFotoPegawai($pegawaiId)
     {
         // Check if the user is logged in
         if (session()->has('jwt_token')) {
             // Retrieve the stored JWT token
             $token = session()->get('jwt_token');
-    
+
             // URL for deleting the user data
             $delete_url = $this->api_url . '/pegawai/foto/' . $pegawaiId;
-    
+
             // Initialize cURL session for sending the DELETE request
             $ch = curl_init($delete_url);
-    
+
             // Set cURL options for sending a DELETE request
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 'Authorization: Bearer ' . $token,
             ]);
-    
+
             // Execute the cURL request
             $response = curl_exec($ch);
-    
+
             // Check the HTTP status code in the response
             $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             if ($http_status_code === 204) {
@@ -569,7 +581,7 @@ public function hapusFotoPegawai($pegawaiId)
                 // Error response from the API
                 return "Error deleting user: " . $response;
             }
-    
+
             // Close the cURL session
             curl_close($ch);
         } else {
@@ -577,5 +589,4 @@ public function hapusFotoPegawai($pegawaiId)
             return "User not logged in. Please log in first.";
         }
     }
-
 }
