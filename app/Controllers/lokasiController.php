@@ -23,7 +23,7 @@ class lokasiController extends BaseController
         if (session()->has('jwt_token')) {
             $token = session()->get('jwt_token');
             // URL for fetching akun data
-            $lokasi_url = $this->api_url . '/organisasi/current';
+            $lokasi_url = $this->api_url . '/organisasi';
 
             // Initialize cURL session
             $ch_lokasi = curl_init($lokasi_url);
@@ -262,6 +262,7 @@ class lokasiController extends BaseController
             $alamat = $this->request->getPost('alamat');
             $latitude = floatval($this->request->getPost('latitude'));
             $longitude = floatval($this->request->getPost('longitude'));
+            $radius = floatval($this->request->getPost('radiusz'));
 
             // Prepare the data to be sent to the API
             $postData = [
@@ -270,6 +271,7 @@ class lokasiController extends BaseController
                 'alamat' => $alamat,
                 'latitude' => $latitude,
                 'longitude' => $longitude,
+                'radius' => $radius,
             ];;
 
             $edit_akun_JSON = json_encode($postData);
