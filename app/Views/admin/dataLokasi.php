@@ -123,6 +123,12 @@
             draggable: true // Make the marker draggable
         });
 
+        // Function to update input fields with coordinates
+        function updateCoordinates(lat, lng) {
+            document.getElementById('af-account-alamat-lat').value = lat;
+            document.getElementById('af-account-alamat-lon').value = lng;
+        }
+
         // Add click event listener to the "Edit Location" button
         document.getElementById('edit-location-btn').addEventListener('click', function() {
             // Request the user's current location
@@ -139,6 +145,9 @@
 
                     // Update the marker position
                     marker.setPosition(userLatLng);
+
+                    // Update input fields with new coordinates
+                    updateCoordinates(userLatLng.lat, userLatLng.lng);
 
                     // Reverse geocode using OpenStreetMap Nominatim API
                     var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLatLng.lat}&lon=${userLatLng.lng}`;
@@ -168,8 +177,7 @@
         // Event listener for when marker position changes
         google.maps.event.addListener(marker, 'dragend', function(event) {
             // Update input fields with new coordinates
-            document.getElementById('af-account-alamat-lat').value = event.latLng.lat();
-            document.getElementById('af-account-alamat-lon').value = event.latLng.lng();
+            updateCoordinates(event.latLng.lat(), event.latLng.lng());
 
             // Reverse geocode using OpenStreetMap Nominatim API for new marker position
             var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${event.latLng.lat()}&lon=${event.latLng.lng()}`;
@@ -190,6 +198,7 @@
         });
     }
 }
+
 
 </script>
 
