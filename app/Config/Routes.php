@@ -132,7 +132,7 @@ $routes->post('/submitkonfirmasitambahfoto', 'fileController::submitKonfirmasiFo
 $routes->get('/editfotopegawai/(:any)', 'fileController::editFotoPegawai/$1', ['filter' => 'auth']);
 $routes->post('/submiteditfotopegawai/(:segment)', 'fileController::submitEditFotoPegawai/$1', ['filter' => 'auth']);
 
-$routes->get('/hapusfotopegawai/(:segment)', 'fileController::hapusFotoPegawai/$1', ['filter' => 'auth']);
+$routes->delete('/hapusfotopegawai/(:segment)', 'fileController::hapusFotoPegawai/$1', ['filter' => 'auth']);
 
 $routes->get('/datakehadiran', 'kehadiranController::dataKehadiran', ['filter' => 'auth'] );
 

@@ -16,59 +16,37 @@ class AkunController extends BaseController
     public function dataAkun()
     {
         $title = 'Data Akun';
-
-
-        // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
         $page = $this->request->getGet('page') ?? 1;
-
-        // Retrieve the value of the 'size' parameter from the request, default to 5 if not present
         $size = $this->request->getGet('size') ?? 5;
-
-        // Check if the user is logged in
-        // Retrieve the stored JWT token
+    
         if (session()->has('jwt_token')) {
             $token = session()->get('jwt_token');
-            // URL for fetching akun data
             $akun_url = $this->api_url . '/akun?page=' . $page . '&size=' . $size;
-
-            // Initialize cURL session
+    
             $ch_akun = curl_init($akun_url);
-
-            // Set cURL options
             curl_setopt($ch_akun, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch_akun, CURLOPT_HTTPHEADER, [
                 'Authorization: Bearer ' . $token,
             ]);
-
-            // Execute the cURL request for fetching akun data
+    
             $response_akun = curl_exec($ch_akun);
-
-            // Check the API response for akun data
+    
             if ($response_akun) {
                 $http_status_code_akun = curl_getinfo($ch_akun, CURLINFO_HTTP_CODE);
-
+    
                 if ($http_status_code_akun === 200) {
-                    // Akun data fetched successfully
                     $akun_data = json_decode($response_akun, true);
-
-
-
-                    // $total_pages = $akun_data['data']['total'];
-
-                    return  view('/admin/dataAkun', ['akun_data' => $akun_data['data']['akun'], 'meta_data' => $akun_data['data'], 'title' => $title]);
+                    return view('/admin/dataAkun', ['akun_data' => $akun_data['data']['akun'], 'meta_data' => $akun_data['data'], 'title' => $title]);
                 } else {
-                    // Error fetching akun data
-                    return "Error fetching akun data. HTTP Status Code: $http_status_code_akun";
+                    return $this->renderErrorView($http_status_code_akun);
                 }
             } else {
-                // Error fetching akun data
-                return "Error fetching akun data.";
+                return $this->renderErrorView(500);
             }
-
-            // Close the cURL session for akun data
+    
             curl_close($ch_akun);
         } else {
-            return "User not logged in. Please log in first.";
+            return $this->renderErrorView(401);
         }
     }
 
@@ -76,10 +54,17 @@ class AkunController extends BaseController
     public function tambahAkun()
     {
         $title = 'Tambah Akun';
-
-        // If the request method is not POST or form data is missing, render the add account view
-        echo view('/admin/tambahAkun', ['title' => $title]);
+    
+        // Check if jwt_token session exists
+        if (session()->has('jwt_token')) {
+            // If session exists, render the add account view
+            return view('/admin/tambahAkun', ['title' => $title]);
+        } else {
+            // If session does not exist, redirect or handle unauthorized access
+            return $this->renderErrorView(401); // You can define your own error handling method
+        }
     }
+    
 
     public function submitTambahAkun()
     {
@@ -142,6 +127,7 @@ class AkunController extends BaseController
                     if ($response) {
                         // Check the HTTP status code in the response
                         $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                        curl_close($ch);
 
                         if ($http_status_code === 201) {
                             // Account created successfully
@@ -150,33 +136,30 @@ class AkunController extends BaseController
                         } else {
                             // Error response from the API
                             log_message('error', 'Error creating account: ' . $response);
-                            return "Error creating account: " . $response;
+                            return $this->renderErrorView($http_status_code);
                         }
                     } else {
                         // Error sending request to the API
                         $error_message = curl_error($ch);
+                        curl_close($ch);
                         log_message('error', 'Error sending request to the API: ' . $error_message);
-                        return "Error sending request to the API: " . $error_message;
+                        return $this->renderErrorView(500);
                     }
-
-                    // Close the cURL session
-                    curl_close($ch);
                 } else {
                     // JWT token is missing
                     log_message('error', 'JWT token is missing.');
-                    return "JWT token is required.";
+                    return $this->renderErrorView(401);
                 }
             } else {
                 // File upload failed
                 log_message('error', 'File upload failed.');
-                return "File upload failed. Please try again.";
+                return $this->renderErrorView(400);
             }
         } else {
             log_message('error', 'Request method is not POST.');
-            return "Request method is not POST.";
+            return $this->renderErrorView(405);
         }
     }
-
 
     private function uploadFileImg($file_path)
     {

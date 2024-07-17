@@ -49,7 +49,7 @@
                                     </div>
                                 </th>
 
-                           
+
 
 
                                 <th scope="col" class="px-6 py-3 text-start">
@@ -83,55 +83,59 @@
                         </thead>
 
 
-                    
+
 
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-    <?php foreach ($matched_data as $data) : ?>
-        <tr>
-            <td class="size-px whitespace-nowrap">
-                <div class="ps-6 py-3">
-                    <label for="hs-at-with-checkboxes-1" class="flex">
-                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
-                        <span class="sr-only">Checkbox</span>
-                    </label>
-                </div>
-            </td>
-            <td class="size-px whitespace-nowrap">
-                <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                    <div class="flex items-center gap-x-3">
-                        <img class="inline-block size-[38px] rounded-full" src="<?= $data['foto'] ?? "https://api.fathoor.dev/v1/file/img/default.png" ?>" alt="Image Description">
-                    </div>
-                </div>
-            </td>
-            <td class="h-px w-72 whitespace-nowrap">
-                <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $data['pegawai']['id'] ?? 'N/A' ?></span>
-                </div>
-            </td>
-            <td class="h-px w-72 whitespace-nowrap">
-                <div class="px-6 py-3">
-                    <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $data['pegawai']['nama'] ?? 'N/A' ?></span>
-                </div>
-            </td>
-            <td class="size-px whitespace-nowrap">
-                <div class="px-6 py-1.5">
-                    <a href="/editfotopegawai/<?= $data['pegawai']['id']?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Edit
-                    </a>
-                </div>
-            </td>
-            <td class="size-px whitespace-nowrap">
-                <div class="px-6 py-1.5">
-                    <a href="/hapusfotopegawai/<?= $data['pegawai']['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Delete
-                    </a>
-                </div>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</tbody>
+                            <?php foreach ($matched_data as $data) : ?>
+                                <tr>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div class="ps-6 py-3">
+                                            <label for="hs-at-with-checkboxes-1" class="flex">
+                                                <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
+                                                <span class="sr-only">Checkbox</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                                            <div class="flex items-center gap-x-3">
+                                                <img class="inline-block size-[38px] rounded-full" src="<?= $data['foto'] ?? "https://api.fathoor.dev/v1/file/img/default.png" ?>" alt="Image Description">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="h-px w-72 whitespace-nowrap">
+                                        <div class="px-6 py-3">
+                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $data['pegawai']['id'] ?? 'N/A' ?></span>
+                                        </div>
+                                    </td>
+                                    <td class="h-px w-72 whitespace-nowrap">
+                                        <div class="px-6 py-3">
+                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $data['pegawai']['nama'] ?? 'N/A' ?></span>
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div class="px-6 py-1.5">
+                                            <a href="/editfotopegawai/<?= $data['pegawai']['id'] ?>" class="inline-flex items-center gap-x-1 text-sm text-teal-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                Edit
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                        <div class="px-6 py-1.5">
+                                            <form action="/hapusfotopegawai/<?= $data['pegawai']['id'] ?>" method="post" onsubmit="return confirm('Are you sure you want to delete this photo?');">
+                                                <?= csrf_field() ?>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
 
-                        
+
 
                     </table>
                     <!-- End Table -->
@@ -141,7 +145,7 @@
                         <!-- Pagination -->
                         <nav class="flex items-center gap-x-1">
                             <?php if ($meta_data['page'] > 1) : ?>
-                                <a href="/datafotopegawai?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                <a href="/datafotopegawai?page=<?= $meta_data['page'] - 1 ?>&size=10" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
                                     <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m15 18-6-6 6-6" />
                                     </svg>
@@ -156,7 +160,7 @@
                             </div>
 
                             <?php if ($meta_data['page'] < $meta_data['total']) : ?>
-                                <a href="/datafotopegawai?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                <a href="/datafotopegawai?page=<?= $meta_data['page'] + 1 ?>&size=10" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
                                     <span aria-hidden="true" class="sr-only">Next</span>
                                     <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m9 18 6-6-6-6" />

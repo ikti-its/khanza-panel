@@ -14,7 +14,7 @@
             </p>
         </div>
 
-        <form action="/submittambahakun" method="post" enctype="multipart/form-data">
+        <form action="/submittambahakun" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             <!-- Grid -->
             <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
                 <div class="sm:col-span-3">
@@ -54,7 +54,7 @@
                 <!-- End Col -->
 
                 <div class="sm:col-span-9">
-                    <input id="af-account-email" name="email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="maria@site.com">
+                    <input id="af-account-email" name="email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="budi@fathoor.dev">
                 </div>
                 <!-- End Col -->
 
@@ -67,7 +67,7 @@
 
                 <div class="sm:col-span-9">
                     <div class="space-y-2">
-                        <input id="af-account-password" name="password" type="password" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter current password">
+                        <input id="af-account-password" name="password" type="password" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Masukkan Password">
                     </div>
                 </div>
                 <!-- End Col -->
@@ -104,13 +104,13 @@
             <!-- End Grid -->
 
             <div class="mt-5 flex justify-end gap-x-2">
-                <a href="/dataakun">
+                <a href="javascript:history.back()">
                     <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                         Batal
                     </button>
                 </a>
 
-                <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <button type="submit" id="submitButton"  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Tambah Akun
                 </button>
             </div>
@@ -129,6 +129,12 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     });
+
+    function validateForm() {
+        var submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', true);
+        submitButton.innerHTML = 'Mengajukan...';
+    }
 </script>
 
 
