@@ -213,57 +213,57 @@ class AkunController extends BaseController
     }
 
     public function editAkun($userId)
-    {
+{
+    if (session()->has('jwt_token')) {
+        // Retrieve the stored JWT Token
+        $token = session()->get('jwt_token');
 
-        if (session()->has('jwt_token')) {
+        // Fetch the user data from the API or database based on the user ID
+        $user_url = $this->api_url . '/akun/' . $userId;
 
-            //retrieve the stored JWT Token
-            $token = session()->get('jwt_token');
+        // Initialize cURL session
+        $ch_user = curl_init($user_url);
 
-            // Fetch the user data from the API or database based on the user ID
-            $user_url = $this->api_url . '/akun/' . $userId;
+        // Set cURL options
+        curl_setopt($ch_user, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_user, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
 
-            //Initialize cURL session
-            $ch_user = curl_init($user_url);
+        // Execute the cURL request for fetching user data
+        $response_user = curl_exec($ch_user);
 
-            // Set cURL options
-            curl_setopt($ch_user, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch_user, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
-
-            // Execute the cURL request for fetching user data
-            $response_user = curl_exec($ch_user);
-
-            // Check the API response for user data
-
-            if ($response_user) {
-                $http_status_code = curl_getinfo($ch_user, CURLINFO_HTTP_CODE);
-
-                if ($http_status_code === 200) {
-                    //user data fetched successfully
-                    $userData = json_decode($response_user, true);
-
-                    //Render the view to edit user data, passing the user data
-                    return view('/admin/editAkun', ['userData' => $userData['data'], 'userId' => $userId, 'title' => 'Edit User']);
-                } else {
-                    // Error fetching user data
-                    return "Error fetching user data. HTTP Status Code: $http_status_code $userId";
-                }
-            } else {
-                //Error fetching user data
-                return "Error fetching user data.";
-            }
-
-            //Close the cURL session for user data
+        // Check the API response for user data
+        if ($response_user) {
+            $http_status_code = curl_getinfo($ch_user, CURLINFO_HTTP_CODE);
             curl_close($ch_user);
-        } else {
-            //User not logged in
-            return "User not logged in. Please log in first. ";
-        }
-    }
 
-    public function submitEditAkun($userId)
+            if ($http_status_code === 200) {
+                // User data fetched successfully
+                $userData = json_decode($response_user, true);
+
+                // Render the view to edit user data, passing the user data
+                return view('/admin/editAkun', [
+                    'userData' => $userData['data'],
+                    'userId' => $userId,
+                    'title' => 'Edit User'
+                ]);
+            } else {
+                // Error fetching user data
+                return $this->renderErrorView($http_status_code);
+            }
+        } else {
+            // Error fetching user data
+            curl_close($ch_user);
+            return $this->renderErrorView(500);
+        }
+    } else {
+        // User not logged in
+        return $this->renderErrorView(401);
+    }
+}
+
+public function submitEditAkun($userId)
 {
     if ($this->request->getPost()) {
         // Retrieve the form data from the POST request
@@ -336,69 +336,68 @@ class AkunController extends BaseController
                 // Check if the HTTP status code in the response
                 $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+                curl_close($ch); // Close the cURL session
+
                 if ($http_status_code === 200) {
                     // Account updated successfully
-                    $title = 'Data Akun';
-
-                    // Pass the updated account data along with the title to the view
                     return redirect()->to(base_url('dataakun?page=1&size=5'));
                 } else {
                     // Error response from the API
-                    return "Error updating account: " . $response;
+                    return $this->renderErrorView($http_status_code);
                 }
             } else {
                 // Error sending request to the API
-                return "Error sending request to the API.";
+                $error_message = curl_error($ch);
+                curl_close($ch); // Close the cURL session
+                return $this->renderErrorView(500);
             }
-
-            // Close the cURL session
-            curl_close($ch);
         } else {
-            // Email or role is empty
-            return "Email and role are required.";
+            // User not logged in
+            return $this->renderErrorView(401);
         }
     }
 }
 
 
-    public function hapusAkun($userId)
-    {
-        // Check if the user is logged in
-        if (session()->has('jwt_token')) {
-            // Retrieve the stored JWT token
-            $token = session()->get('jwt_token');
 
-            // URL for deleting the user data
-            $delete_url = $this->api_url .  '/akun/' . $userId;
+public function hapusAkun($userId)
+{
+    // Check if the user is logged in
+    if (session()->has('jwt_token')) {
+        // Retrieve the stored JWT token
+        $token = session()->get('jwt_token');
 
-            // Initialize cURL session for sending the DELETE request
-            $ch = curl_init($delete_url);
+        // URL for deleting the user data
+        $delete_url = $this->api_url . '/akun/' . $userId;
 
-            // Set cURL options for sending a DELETE request
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
+        // Initialize cURL session for sending the DELETE request
+        $ch = curl_init($delete_url);
 
-            // Execute the cURL request
-            $response = curl_exec($ch);
+        // Set cURL options for sending a DELETE request
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
 
-            // Check the HTTP status code in the response
-            $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($http_status_code === 204) {
-                // User deleted successfully
-                return redirect()->to(base_url('dataakun?page=1&size=5'));
-            } else {
-                // Error response from the API
-                return "Error deleting user: " . $response;
-            }
+        // Execute the cURL request
+        $response = curl_exec($ch);
 
-            // Close the cURL session
-            curl_close($ch);
+        // Check the HTTP status code in the response
+        $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch); // Close the cURL session
+
+        if ($http_status_code === 204) {
+            // User deleted successfully
+            return redirect()->to(base_url('dataakun?page=1&size=5'));
         } else {
-            // User not logged in
-            return "User not logged in. Please log in first.";
+            // Error response from the API
+            return $this->renderErrorView($http_status_code);
         }
+    } else {
+        // User not logged in
+        return $this->renderErrorView(401);
     }
+}
+
 }

@@ -14,61 +14,47 @@ class KehadiranController extends BaseController
 
 
     public function dataKehadiran()
-    {
-        $title = 'Data Kehadiran';
+{
+    $title = 'Data Kehadiran';
 
+    $page = $this->request->getGet('page') ?? 1;
+    $size = $this->request->getGet('size') ?? 5;
 
-        // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
-        $page = $this->request->getGet('page') ?? 1;
+    if (session()->has('jwt_token')) {
+        $token = session()->get('jwt_token');
+        $kehadiran_url = $this->api_url . '/kehadiran/presensi?page=' . $page . '&size=' . $size;
 
-        // Retrieve the value of the 'size' parameter from the request, default to 5 if not present
-        $size = $this->request->getGet('size') ?? 5;
+        $ch_kehadiran = curl_init($kehadiran_url);
+        curl_setopt($ch_kehadiran, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_kehadiran, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
 
-        // Check if the user is logged in
-        // Retrieve the stored JWT token
-        if (session()->has('jwt_token')) {
-            $token = session()->get('jwt_token');
-            // URL for fetching akun data
-            $kehadiran_url = $this->api_url . '/kehadiran/presensi?page=' . $page . '&size=' . $size;
+        $response_kehadiran = curl_exec($ch_kehadiran);
 
-            // Initialize cURL session
-            $ch_kehadiran = curl_init($kehadiran_url);
+        if ($response_kehadiran) {
+            $http_status_code_kehadiran = curl_getinfo($ch_kehadiran, CURLINFO_HTTP_CODE);
 
-            // Set cURL options
-            curl_setopt($ch_kehadiran, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch_kehadiran, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
-
-            // Execute the cURL request for fetching akun data
-            $response_kehadiran = curl_exec($ch_kehadiran);
-
-            // Check the API response for akun data
-            if ($response_kehadiran) {
-                $http_status_code_kehadiran = curl_getinfo($ch_kehadiran, CURLINFO_HTTP_CODE);
-
-                if ($http_status_code_kehadiran === 200) {
-                    // Akun data fetched successfully
-                    $kehadiran_data = json_decode($response_kehadiran, true);
-
-                    // $total_pages = $akun_data['data']['total'];
-
-                    return  view('/admin/dataKehadiran', ['kehadiran_data' => $kehadiran_data['data']['presensi'], 'meta_data' => $kehadiran_data['data'], 'title' => $title]);
-                } else {
-                    // Error fetching akun data
-                    return "Error fetching akun data. HTTP Status Code: $http_status_code_kehadiran";
-                }
+            if ($http_status_code_kehadiran === 200) {
+                $kehadiran_data = json_decode($response_kehadiran, true);
+                return view('/admin/dataKehadiran', [
+                    'kehadiran_data' => $kehadiran_data['data']['presensi'],
+                    'meta_data' => $kehadiran_data['data'],
+                    'title' => $title
+                ]);
             } else {
-                // Error fetching akun data
-                return "Error fetching akun data.";
+                return $this->renderErrorView($http_status_code_kehadiran);
             }
-
-            // Close the cURL session for akun data
-            curl_close($ch_kehadiran);
         } else {
-            return "User not logged in. Please log in first.";
+            return $this->renderErrorView(500);
         }
+
+        curl_close($ch_kehadiran);
+    } else {
+        return $this->renderErrorView(401);
     }
+}
+
     
 
     

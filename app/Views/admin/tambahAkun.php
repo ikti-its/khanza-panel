@@ -14,7 +14,7 @@
             </p>
         </div>
 
-        <form action="/submittambahakun" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <form id="addAccountForm" action="/submittambahakun" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             <!-- Grid -->
             <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
                 <div class="sm:col-span-3">
@@ -54,7 +54,8 @@
                 <!-- End Col -->
 
                 <div class="sm:col-span-9">
-                    <input id="af-account-email" name="email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="budi@fathoor.dev">
+                    <input id="af-account-email" name="email" type="email" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="budi@fathoor.dev" required>
+                    <div id="emailError" class="text-sm text-red-500 hidden">Email harus diisi dan harus valid.</div>
                 </div>
                 <!-- End Col -->
 
@@ -67,7 +68,8 @@
 
                 <div class="sm:col-span-9">
                     <div class="space-y-2">
-                        <input id="af-account-password" name="password" type="password" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Masukkan Password">
+                        <input id="af-account-password" name="password" type="password" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Masukkan Password" required>
+                        <div id="passwordError" class="text-sm text-red-500 hidden">Password harus diisi.</div>
                     </div>
                 </div>
                 <!-- End Col -->
@@ -83,8 +85,9 @@
 
                 <div class="sm:col-span-9">
                     <div class="sm:flex">
-                        <select name="role" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                            <option value="1337" selected>1337 (Developer)</option>
+                        <select id="role" name="role" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" required>
+                            <option value="">Pilih Role</option>
+                            <option value="1337">1337 (Developer)</option>
                             <option value="1">1 (admin)</option>
                             <option value="2">2 (pegawai)</option>
                             <option value="3">3 (Kepala Departemen)</option>
@@ -95,8 +98,8 @@
                             <option value="4004">4004 (Gudang)</option>
                             <option value="5000">5000 (Kepala Keuangan)</option>
                             <option value="5001">5001 (Keuangan)</option>
-                   
                         </select>
+                        <div id="roleError" class="text-sm text-red-500 hidden">Role harus dipilih.</div>
                     </div>
                 </div>
                 <!-- End Col -->
@@ -110,7 +113,7 @@
                     </button>
                 </a>
 
-                <button type="submit" id="submitButton"  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <button type="submit" id="submitButton" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Tambah Akun
                 </button>
             </div>
@@ -131,11 +134,40 @@
     });
 
     function validateForm() {
-        var submitButton = document.getElementById('submitButton');
-        submitButton.setAttribute('disabled', true);
-        submitButton.innerHTML = 'Mengajukan...';
+        var email = document.getElementById('af-account-email').value;
+        var password = document.getElementById('af-account-password').value;
+        var role = document.getElementById('role').value;
+        var valid = true;
+
+        if (email.trim() === '' || !isValidEmail(email)) {
+            document.getElementById('emailError').classList.remove('hidden');
+            valid = false;
+        } else {
+            document.getElementById('emailError').classList.add('hidden');
+        }
+
+        if (password.trim() === '') {
+            document.getElementById('passwordError').classList.remove('hidden');
+            valid = false;
+        } else {
+            document.getElementById('passwordError').classList.add('hidden');
+        }
+
+        if (role === '') {
+            document.getElementById('roleError').classList.remove('hidden');
+            valid = false;
+        } else {
+            document.getElementById('roleError').classList.add('hidden');
+        }
+
+        return valid;
+    }
+
+    function isValidEmail(email) {
+        // Basic email validation regex
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
 </script>
-
 
 <?= $this->endSection(); ?>

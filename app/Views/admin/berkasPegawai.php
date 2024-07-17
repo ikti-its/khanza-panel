@@ -38,13 +38,7 @@
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-slate-800">
                             <tr>
-                                <th scope="col" class="ps-6 py-3 text-start">
-                                    <label for="hs-at-with-checkboxes-main" class="flex">
-                                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-main">
-                                        <span class="sr-only">Checkbox</span>
-                                    </label>
-                                </th>
-
+                              
 
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
@@ -178,14 +172,7 @@
 
                             <?php foreach ($berkas_data as $berkasEntry) : ?>
                                 <tr>
-                                    <td class="size-px whitespace-nowrap">
-                                        <div class="ps-6 py-3">
-                                            <label for="hs-at-with-checkboxes-1" class="flex">
-                                                <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
-                                                <span class="sr-only">Checkbox</span>
-                                            </label>
-                                        </div>
-                                    </td>
+                                   
                                     <td class="size-px whitespace-nowrap">
                                         <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                                             <div class="px-6 py-3">
@@ -302,7 +289,7 @@
                             <!-- Pagination -->
                             <nav class="flex items-center gap-x-1">
                                 <?php if ($meta_data['page'] > 1) : ?>
-                                    <a href="/dataakun?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                    <a href="/berkaspegawai?page=<?= $meta_data['page'] - 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
                                         <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="m15 18-6-6 6-6" />
                                         </svg>
@@ -317,7 +304,7 @@
                                 </div>
 
                                 <?php if ($meta_data['page'] < $meta_data['total']) : ?>
-                                    <a href="/dataakun?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
+                                    <a href="/berkaspegawai?page=<?= $meta_data['page'] + 1 ?>&size=5" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10">
                                         <span aria-hidden="true" class="sr-only">Next</span>
                                         <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="m9 18 6-6-6-6" />

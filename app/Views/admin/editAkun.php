@@ -65,7 +65,7 @@
 
                 <div class="sm:col-span-9">
                     <div class="space-y-2">
-                        <input id="af-account-password" name="password" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter new password">
+                        <input id="af-account-password" name="password" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Masukkan password baru">
                     </div>
                 </div>
                 <!-- End Col -->
@@ -82,7 +82,7 @@
                 <div class="sm:col-span-9">
                     <div class="sm:flex">
                         <select name="role" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                            <option value=<?= ($userData['role'] ?? '') ?>><?= ($userData['role'] ?? '') ?></option>
+                            <option selected value=<?= ($userData['role'] ?? '') ?>><?= ($userData['role'] ?? '') ?></option>
                         </select>
                     </div>
                 </div>

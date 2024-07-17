@@ -37,12 +37,7 @@
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-slate-800">
                             <tr>
-                                <th scope="col" class="ps-6 py-3 text-start">
-                                    <label for="hs-at-with-checkboxes-main" class="flex">
-                                        <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-main">
-                                        <span class="sr-only">Checkbox</span>
-                                    </label>
-                                </th>
+                             
 
 
                                 <th scope="col" class="px-6 py-3 text-start">
@@ -92,14 +87,6 @@
                                 ?>
 
                                 <tr>
-                                    <td class="size-px whitespace-nowrap">
-                                        <div class="ps-6 py-3">
-                                            <label for="hs-at-with-checkboxes-1" class="flex">
-                                                <input type="checkbox" class="shrink-0 border-gray-300 rounded text-teal-600 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-600 dark:checked:bg-teal-500 dark:checked:border-teal-500 dark:focus:ring-offset-gray-800" id="hs-at-with-checkboxes-1">
-                                                <span class="sr-only">Checkbox</span>
-                                            </label>
-                                        </div>
-                                    </td>
                                     <td class="size-px whitespace-nowrap">
                                         <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                                             <div class="px-6 py-3">

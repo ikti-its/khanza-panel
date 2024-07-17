@@ -14,7 +14,7 @@
             </p>
         </div>
 
-        <form action="/submittambahpegawai" method="post">
+        <form action="/submittambahpegawai" method="post" onsubmit="return validateForm()">
             <!-- Grid -->
 
             <div class="sm:col-span-3">
@@ -279,7 +279,7 @@
                 <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Batal
                 </button>
-                <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                <button type="submit" id="submitButton" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                     Tambah Pegawai
                 </button>
             </div>
@@ -408,6 +408,12 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     });
+
+    function validateForm() {
+        var submitButton = document.getElementById('submitButton');
+        submitButton.setAttribute('disabled', true);
+        submitButton.innerHTML = 'Mengajukan...';
+    }
 </script>
 
 <?= $this->endSection(); ?>

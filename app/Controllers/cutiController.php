@@ -16,59 +16,49 @@ class CutiController extends BaseController
     public function dataCuti()
     {
         $title = 'Data Cuti';
-
-
+    
         // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
         $page = $this->request->getGet('page') ?? 1;
-
-        // Retrieve the value of the 'size' parameter from the request, default to 5 if not present
         $size = $this->request->getGet('size') ?? 5;
-
+    
         // Check if the user is logged in
-        // Retrieve the stored JWT token
         if (session()->has('jwt_token')) {
             $token = session()->get('jwt_token');
-            // URL for fetching akun data
             $cuti_url = $this->api_url . '/kehadiran/cuti?page=' . $page . '&size=' . $size;
-
+    
             // Initialize cURL session
             $ch_cuti = curl_init($cuti_url);
-
-            // Set cURL options
             curl_setopt($ch_cuti, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch_cuti, CURLOPT_HTTPHEADER, [
                 'Authorization: Bearer ' . $token,
             ]);
-
-            // Execute the cURL request for fetching akun data
+    
+            // Execute the cURL request
             $response_akun = curl_exec($ch_cuti);
-
-            // Check the API response for akun data
+    
             if ($response_akun) {
                 $http_status_code_cuti = curl_getinfo($ch_cuti, CURLINFO_HTTP_CODE);
-
+    
                 if ($http_status_code_cuti === 200) {
-                    // Akun data fetched successfully
                     $cuti_data = json_decode($response_akun, true);
-
-                    // $total_pages = $akun_data['data']['total'];
-
-                    return  view('/admin/dataCuti', ['cuti_data' => $cuti_data['data']['cuti'], 'meta_data' => $cuti_data['data'], 'title' => $title]);
+                    return view('/admin/dataCuti', [
+                        'cuti_data' => $cuti_data['data']['cuti'],
+                        'meta_data' => $cuti_data['data'],
+                        'title' => $title
+                    ]);
                 } else {
-                    // Error fetching akun data
-                    return "Error fetching akun data. HTTP Status Code: $http_status_code_cuti";
+                    return $this->renderErrorView($http_status_code_cuti);
                 }
             } else {
-                // Error fetching akun data
-                return "Error fetching akun data.";
+                return $this->renderErrorView(500);
             }
-
-            // Close the cURL session for akun data
+    
             curl_close($ch_cuti);
         } else {
-            return "User not logged in. Please log in first.";
+            return $this->renderErrorView(401);
         }
     }
+    
 
     public function tambahCuti()
     {

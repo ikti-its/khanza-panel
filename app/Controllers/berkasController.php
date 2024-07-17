@@ -49,37 +49,45 @@ class berkasController extends BaseController
                     // Akun data fetched successfully
                     $berkas_data = json_decode($response_akun, true);
 
-                    // $total_pages = $akun_data['data']['total'];
+                    // Close the cURL session
+                    curl_close($ch_akun);
 
-                    return  view('/admin/berkasPegawai', ['berkas_data' => $berkas_data['data']['berkas_pegawai'], 'meta_data' => $berkas_data['data'], 'title' => $title]);
+                    // Return the view with berkas data
+                    return view('/admin/berkasPegawai', ['berkas_data' => $berkas_data['data']['berkas_pegawai'], 'meta_data' => $berkas_data['data'], 'title' => $title]);
                 } else {
                     // Error fetching akun data
-                    return "Error fetching akun data. HTTP Status Code: $http_status_code_akun";
+                    curl_close($ch_akun);
+                    return $this->renderErrorView($http_status_code_akun);
                 }
             } else {
                 // Error fetching akun data
-                return "Error fetching akun data.";
+                $error_message = curl_error($ch_akun);
+                curl_close($ch_akun);
+                return $this->renderErrorView(500);
             }
-
-            // Close the cURL session for akun data
-            curl_close($ch_akun);
         } else {
-            return "User not logged in. Please log in first.";
+            // User not logged in
+            return $this->renderErrorView(401);
         }
     }
 
+
     public function tambahBerkas()
     {
-        $title = 'Tambah Alamat';
-
-        // If the request method is not POST or form data is missing, render the add account view
-        echo view('/admin/tambahBerkas', ['title' => $title]);
+        $title = 'Tambah Berkas';
+        // Check if jwt_token session exists
+        if (session()->has('jwt_token')) {
+            // If session exists, render the add account view
+            return view('/admin/tambahBerkas', ['title' => $title]);
+        } else {
+            // If session does not exist, redirect or handle unauthorized access
+            return $this->renderErrorView(401); // You can define your own error handling method
+        }
     }
 
     public function submitTambahBerkas()
     {
         if ($this->request->getPost()) {
-
             // Retrieve the form data from the POST request
             $id_pegawai = $this->request->getPost('id_pegawai');
             $nik = $this->request->getPost('nik');
@@ -88,16 +96,7 @@ class berkasController extends BaseController
             $agama = $this->request->getPost('agama');
             $pendidikan = $this->request->getPost('pendidikan');
 
-            // $kk = $this->request->getPost('kk');
-            // $npwp = $this->request->getPost('npwp');
-            // $bpjs = $this->request->getPost('bpjs');
-            // $ijazah = $this->request->getPost('ijazah');
-            // $skck = $this->request->getPost('skck');
-            // $str = $this->request->getPost('str');
-            // $serkom = $this->request->getPost('serkom');
-
-            //upload KTP, Ijazah, Skck, Str, Serkom file to get its URL
-
+            // Upload files
             $ktp = $this->request->getFile('af-submit-ktp-upload-images');
             $kk = $this->request->getFile('af-submit-kk-upload-images');
             $npwp = $this->request->getFile('af-submit-npwp-upload-images');
@@ -107,8 +106,7 @@ class berkasController extends BaseController
             $str = $this->request->getFile('af-submit-str-upload-images');
             $serkom = $this->request->getFile('af-submit-serkom-upload-images');
 
-
-            // Generate a unique name for the file to avoid conflicts
+            // Generate unique file names and move them
             $ktpFileName = $ktp->getRandomName();
             $kkFileName = $kk->getRandomName();
             $npwpFileName = $npwp->getRandomName();
@@ -116,10 +114,9 @@ class berkasController extends BaseController
             $ijazahFileName = $ijazah->getRandomName();
             $skckFileName = $skck->getRandomName();
             $strFileName = $str->getRandomName();
-            $serkomFileName = $str->getRandomName();
+            $serkomFileName = $serkom->getRandomName();
 
-            // Move the uploaded file to a desired directory with the new name and extension
-
+            // Move files to uploads directory
             $ktp->move(ROOTPATH . 'public/uploads/', $ktpFileName);
             $kk->move(ROOTPATH . 'public/uploads/', $kkFileName);
             $npwp->move(ROOTPATH . 'public/uploads/', $npwpFileName);
@@ -129,17 +126,17 @@ class berkasController extends BaseController
             $str->move(ROOTPATH . 'public/uploads/', $strFileName);
             $serkom->move(ROOTPATH . 'public/uploads/', $serkomFileName);
 
-            // URL of the uploaded file
-            $ktp_url =  ROOTPATH . 'public\uploads\\' . $ktpFileName;
-            $kk_url =  ROOTPATH . 'public\uploads\\' . $kkFileName;
-            $npwp_url =  ROOTPATH . 'public\uploads\\' . $npwpFileName;
-            $bpjs_url =  ROOTPATH . 'public\uploads\\' . $bpjsFileName;
-            $ijazah_url =  ROOTPATH . 'public\uploads\\' . $ijazahFileName;
-            $skck_url =  ROOTPATH . 'public\uploads\\' . $skckFileName;
-            $str_url =  ROOTPATH . 'public\uploads\\' . $strFileName;
-            $serkom_url =  ROOTPATH . 'public\uploads\\' . $serkomFileName;
+            // URLs of the uploaded files
+            $ktp_url = ROOTPATH . 'public/uploads/' . $ktpFileName;
+            $kk_url = ROOTPATH . 'public/uploads/' . $kkFileName;
+            $npwp_url = ROOTPATH . 'public/uploads/' . $npwpFileName;
+            $bpjs_url = ROOTPATH . 'public/uploads/' . $bpjsFileName;
+            $ijazah_url = ROOTPATH . 'public/uploads/' . $ijazahFileName;
+            $skck_url = ROOTPATH . 'public/uploads/' . $skckFileName;
+            $str_url = ROOTPATH . 'public/uploads/' . $strFileName;
+            $serkom_url = ROOTPATH . 'public/uploads/' . $serkomFileName;
 
-
+            // Upload files and get URLs
             $ktp_url2 = $this->uploadFileImg($ktp_url);
             $kk_url2 = $this->uploadFileImg($kk_url);
             $npwp_url2 = $this->uploadFileImg($npwp_url);
@@ -149,19 +146,19 @@ class berkasController extends BaseController
             $str_url2 = $this->uploadFileImg($str_url);
             $serkom_url2 = $this->uploadFileImg($serkom_url);
 
-            // Delete the uploaded file if the final URL was successfully obtained
+            // Delete temporary files if URLs obtained
             if ($ktp_url2 && $kk_url2 && $npwp_url2 && $bpjs_url2 && $ijazah_url2 && $skck_url2 && $str_url2 && $serkom_url2) {
-                unlink($ktp_url); // Delete the file
-                unlink($kk_url); // Delete the file
-                unlink($npwp_url); // Delete the file
-                unlink($bpjs_url); // Delete the file
-                unlink($ijazah_url); // Delete the file
-                unlink($skck_url); // Delete the file
-                unlink($str_url); // Delete the file
-                unlink($serkom_url); // Delete the file
+                unlink($ktp_url);
+                unlink($kk_url);
+                unlink($npwp_url);
+                unlink($bpjs_url);
+                unlink($ijazah_url);
+                unlink($skck_url);
+                unlink($str_url);
+                unlink($serkom_url);
             }
 
-            // Prepare the data to be sent to the API
+            // Prepare data for the API
             $postData = [
                 'id_pegawai' => $id_pegawai,
                 'nik' => $nik,
@@ -179,23 +176,17 @@ class berkasController extends BaseController
                 'serkom' => $serkom_url2
             ];
 
-
             $tambah_berkas_JSON = json_encode($postData);
-
             $akun_url = $this->api_url . '/pegawai/berkas';
 
-            // Check if email and role are provided
+            // Check if user is logged in
             if (session()->has('jwt_token')) {
-                // Assume you have some validation logic here for email and role
-
                 $token = session()->get('jwt_token');
 
-                // Initialize cURL session for sending the POST request
+                // Initialize cURL session
                 $ch = curl_init($akun_url);
-
-                // Set cURL options for sending a POST request
                 curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, ($tambah_berkas_JSON));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $tambah_berkas_JSON);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, [
                     'Content-Type: application/json',
@@ -205,36 +196,25 @@ class berkasController extends BaseController
 
                 // Execute the cURL request
                 $response = curl_exec($ch);
+                $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                curl_close($ch);
 
-                // Check if the API request was successful
+                // Check API response
                 if ($response) {
-
-                    // Check if the HTTP status code in the response
-                    $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
                     if ($http_status_code === 201) {
-                        // Account created successfully
-                        $title = 'Data Akun';
-
-                        // Pass the created account data along with the title to the view
                         return redirect()->to(base_url('berkaspegawai?page=1&size=5'));
                     } else {
-                        // Error response from the API
-                        return "Error creating account: " . $tambah_berkas_JSON;
+                        return $this->renderErrorView($http_status_code, $response);
                     }
                 } else {
-                    // Error sending request to the API
-                    return "Error sending request to the API.";
+                    return $this->renderErrorView(500);
                 }
-
-                // Close the cURL session
-                curl_close($ch);
             } else {
-                // Email or role is empty
-                return "Email and role are required.";
+                return $this->renderErrorView(401);
             }
         }
     }
+
 
     public function uploadFileImg($file_path)
     {
@@ -291,16 +271,14 @@ class berkasController extends BaseController
 
     public function editBerkas($pegawaiId)
     {
-
         if (session()->has('jwt_token')) {
-
-            //retrieve the stored JWT Token
+            // Retrieve the stored JWT Token
             $token = session()->get('jwt_token');
 
-            // Fetch the user data from the API or database based on the user ID
+            // Fetch the user data from the API
             $user_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
-            //Initialize cURL session
+            // Initialize cURL session
             $ch_user = curl_init($user_url);
 
             // Set cURL options
@@ -313,30 +291,31 @@ class berkasController extends BaseController
             $response_user = curl_exec($ch_user);
 
             // Check the API response for user data
-
             if ($response_user) {
                 $http_status_code = curl_getinfo($ch_user, CURLINFO_HTTP_CODE);
 
                 if ($http_status_code === 200) {
-                    //user data fetched successfully
+                    // User data fetched successfully
                     $userData = json_decode($response_user, true);
-
-                    //Render the view to edit user data, passing the user data
-                    return view('/admin/editBerkas', ['userData' => $userData['data'], 'pegawaiId' => $pegawaiId, 'title' => 'Edit Berkas']);
+                    return view('/admin/editBerkas', [
+                        'userData' => $userData['data'],
+                        'pegawaiId' => $pegawaiId,
+                        'title' => 'Edit Berkas'
+                    ]);
                 } else {
                     // Error fetching user data
-                    return "Error fetching user data. HTTP Status Code: $http_status_code";
+                    return $this->renderErrorView($http_status_code);
                 }
             } else {
-                //Error fetching user data
-                return "Error fetching user data.";
+                // Error fetching user data
+                return $this->renderErrorView(500);
             }
 
-            //Close the cURL session for user data
+            // Close the cURL session for user data
             curl_close($ch_user);
         } else {
-            //User not logged in
-            return "User not logged in. Please log in first. ";
+            // User not logged in
+            return $this->renderErrorView(401);
         }
     }
 
@@ -345,7 +324,6 @@ class berkasController extends BaseController
     public function submitEditBerkas($pegawaiId)
 {
     if ($this->request->getPost()) {
-
         // Retrieve the form data from the POST request
         $id_pegawai = $this->request->getPost('id_pegawai');
         $nik = $this->request->getPost('nik');
@@ -442,18 +420,19 @@ class berkasController extends BaseController
                 if ($http_status_code === 200) {
                     return redirect()->to(base_url('berkaspegawai?page=1&size=5'));
                 } else {
-                    return "Error updating account: " . $response . $edit_berkas_data_JSON;
+                    return $this->renderErrorView($http_status_code);
                 }
             } else {
-                return "Error sending request to the API.";
+                return $this->renderErrorView(500);
             }
 
             curl_close($ch);
         } else {
-            return "Email and role are required.";
+            return $this->renderErrorView(401);
         }
     }
 }
+
 
 
     public function submitEditKtp($pegawaiId)
@@ -1227,45 +1206,45 @@ class berkasController extends BaseController
     }
 
 
-    public function hapusBerkas($pegawaiId)
-    {
-        // Check if the user is logged in
-        if (session()->has('jwt_token')) {
-            // Retrieve the stored JWT token
-            $token = session()->get('jwt_token');
+   public function hapusBerkas($pegawaiId)
+{
+    // Check if the user is logged in
+    if (session()->has('jwt_token')) {
+        // Retrieve the stored JWT token
+        $token = session()->get('jwt_token');
 
-            // URL for deleting the user data
-            $delete_url =  $this->api_url . '/pegawai/berkas/' . $pegawaiId;
+        // URL for deleting the user data
+        $delete_url = $this->api_url . '/pegawai/berkas/' . $pegawaiId;
 
+        // Initialize cURL session for sending the DELETE request
+        $ch = curl_init($delete_url);
 
-            // Initialize cURL session for sending the DELETE request
-            $ch = curl_init($delete_url);
+        // Set cURL options for sending a DELETE request
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
 
-            // Set cURL options for sending a DELETE request
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
+        // Execute the cURL request
+        $response = curl_exec($ch);
 
-            // Execute the cURL request
-            $response = curl_exec($ch);
-
-            // Check the HTTP status code in the response
-            $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($http_status_code === 204) {
-                // User deleted successfully
-                return redirect()->to(base_url('berkaspegawai?page=1&size=5'));
-            } else {
-                // Error response from the API
-                return "Error deleting user: " . $response;
-            }
-
-            // Close the cURL session
-            curl_close($ch);
+        // Check the HTTP status code in the response
+        $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($http_status_code === 204) {
+            // User deleted successfully
+            return redirect()->to(base_url('berkaspegawai?page=1&size=5'));
         } else {
-            // User not logged in
-            return "User not logged in. Please log in first.";
+            // Error response from the API
+            return $this->renderErrorView($http_status_code);
         }
+
+        // Close the cURL session
+        curl_close($ch);
+    } else {
+        // User not logged in
+        return $this->renderErrorView(401);
     }
+}
+
 }
