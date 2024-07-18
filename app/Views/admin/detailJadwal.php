@@ -43,6 +43,14 @@
                                     </div>
                                 </th>
 
+                                <th scope="col" class="px-6 py-3 text-start">
+                                    <div class="flex items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                            Nama
+                                        </span>
+                                    </div>
+                                </th>
+
 
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
@@ -99,8 +107,13 @@
                                             <div class="px-6 py-3">
                                                
                                                 <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['id_pegawai'] ?? 'N/A' ?></span>
-                                           
-                                             
+                                            </div>
+                                        </td>
+
+                                        <td class="h-px w-72 whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                               
+                                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $jadwalEntry['nama'] ?? 'N/A' ?></span>
                                             </div>
                                         </td>
 

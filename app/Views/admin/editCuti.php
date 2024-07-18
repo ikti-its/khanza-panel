@@ -106,7 +106,7 @@
 
                     <!-- End Col -->
                     <!-- Hidden input field for pegawai_id -->
-                    <input type="hidden" name="id_pegawai" id="id_pegawai" value="<?php echo session('user_specific_data')['pegawai'] ?>">
+                    <!-- <input type="hidden" name="id_pegawai" id="id_pegawai" value="<?php echo session('user_specific_data')['pegawai'] ?>"> -->
                 </div>
 
 

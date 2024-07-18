@@ -12,7 +12,7 @@
                     <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
                         <div>
                             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                Berkas Pegawai
+                                Berkas Pegawai 
                             </h2>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Kelola Berkas Pegawai
@@ -51,10 +51,20 @@
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
                                         <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                            Nama
+                                        </span>
+                                    </div>
+                                </th>
+
+                                <th scope="col" class="px-6 py-3 text-start">
+                                    <div class="flex items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
                                             NIK 
                                         </span>
                                     </div>
                                 </th>
+
+                                
 
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
@@ -166,6 +176,7 @@
                         </thead>
 
 
+                        
 
 
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -178,6 +189,12 @@
                                             <div class="px-6 py-3">
                                                 <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $berkasEntry['id_pegawai'] ?? 'N/A' ?></span>
                                             </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="h-px w-72 whitespace-nowrap">
+                                        <div class="px-6 py-3">
+                                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $berkasEntry['nama'] ?? 'N/A' ?></span>
                                         </div>
                                     </td>
 

@@ -54,6 +54,14 @@
                                     </div>
                                 </th>
 
+                                <th scope="col" class="px-6 py-3 text-start">
+                                    <div class="flex items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                            Nama
+                                        </span>
+                                    </div>
+                                </th>
+
 
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
@@ -110,6 +118,12 @@
                                         <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3">
                                                 <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $cutiEntry['id_pegawai'] ?? 'N/A' ?></span>
+                                            </div>
+                                        </td>
+
+                                        <td class="h-px w-72 whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"><?= $cutiEntry['nama'] ?? 'N/A' ?></span>
                                             </div>
                                         </td>
 
@@ -205,13 +219,13 @@
                             </button>
                             <div id="dropdown" class="hs-dropdown-menu hs-dropdown-open:opacity-100 w-48 hidden z-50 transition-[margin,opacity] opacity-0 duration-300 mb-2 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700" aria-labelledby="hs-small-pagination-dropdown">
 
-                                <a href="/dataakun?page=1&size=5">
+                                <a href="/datacuti?page=1&size=5">
                                     <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
                                         5 page
                                     </button>
                                 </a>
 
-                                <a href="/dataakun?page=1&size=10">
+                                <a href="/datacuti?page=1&size=10">
                                     <button type="button" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
                                         10 page
                                     </button>

@@ -14,51 +14,115 @@ class CutiController extends BaseController
 
 
     public function dataCuti()
-    {
-        $title = 'Data Cuti';
-    
-        // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
-        $page = $this->request->getGet('page') ?? 1;
-        $size = $this->request->getGet('size') ?? 5;
-    
-        // Check if the user is logged in
-        if (session()->has('jwt_token')) {
-            $token = session()->get('jwt_token');
-            $cuti_url = $this->api_url . '/kehadiran/cuti?page=' . $page . '&size=' . $size;
-    
-            // Initialize cURL session
-            $ch_cuti = curl_init($cuti_url);
-            curl_setopt($ch_cuti, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch_cuti, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
-    
-            // Execute the cURL request
-            $response_akun = curl_exec($ch_cuti);
-    
-            if ($response_akun) {
-                $http_status_code_cuti = curl_getinfo($ch_cuti, CURLINFO_HTTP_CODE);
-    
-                if ($http_status_code_cuti === 200) {
-                    $cuti_data = json_decode($response_akun, true);
-                    return view('/admin/dataCuti', [
-                        'cuti_data' => $cuti_data['data']['cuti'],
-                        'meta_data' => $cuti_data['data'],
-                        'title' => $title
-                    ]);
+{
+    $title = 'Data Cuti';
+
+    // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
+    $page = $this->request->getGet('page') ?? 1;
+    $size = $this->request->getGet('size') ?? 5;
+
+    // Check if the user is logged in
+    if (session()->has('jwt_token')) {
+        $token = session()->get('jwt_token');
+        $cuti_url = $this->api_url . '/kehadiran/cuti?page=' . $page . '&size=' . $size;
+
+        // Initialize cURL session
+        $ch_cuti = curl_init($cuti_url);
+        curl_setopt($ch_cuti, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_cuti, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
+
+        // Execute the cURL request
+        $response_cuti = curl_exec($ch_cuti);
+
+        if ($response_cuti) {
+            $http_status_code_cuti = curl_getinfo($ch_cuti, CURLINFO_HTTP_CODE);
+
+            if ($http_status_code_cuti === 200) {
+                $cuti_data = json_decode($response_cuti, true);
+
+                // Close the cURL session for cuti data
+                curl_close($ch_cuti);
+
+                // Now, include data from dataPegawai controller
+                // URL for fetching data pegawai
+                $data_pegawai_url = $this->api_url . '/pegawai';
+
+                // Initialize cURL session for data pegawai
+                $ch_data_pegawai = curl_init($data_pegawai_url);
+                curl_setopt($ch_data_pegawai, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch_data_pegawai, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $token,
+                ]);
+
+                // Execute the cURL request for fetching data pegawai
+                $response_data_pegawai = curl_exec($ch_data_pegawai);
+
+                // Check the API response for data pegawai
+                if ($response_data_pegawai) {
+                    $http_status_code_data_pegawai = curl_getinfo($ch_data_pegawai, CURLINFO_HTTP_CODE);
+
+                    if ($http_status_code_data_pegawai === 200) {
+                        // Data pegawai fetched successfully
+                        $data_pegawai = json_decode($response_data_pegawai, true);
+
+                        // Close the cURL session for data pegawai
+                        curl_close($ch_data_pegawai);
+
+                        // Merge cuti data with akun data
+                        $cuti = $cuti_data['data']['cuti'];
+                        $akun_pegawai = $data_pegawai['data'];
+
+                        // Create an associative array for akun data with id_pegawai as the key
+                        $akun_pegawai_assoc = [];
+                        foreach ($akun_pegawai as $akun) {
+                            $akun_pegawai_assoc[$akun['id']] = $akun['nama'];
+                        }
+
+                        // Add 'nama' field to cuti data if id_pegawai matches
+                        foreach ($cuti as &$c) {
+                            if (isset($akun_pegawai_assoc[$c['id_pegawai']])) {
+                                $c['nama'] = $akun_pegawai_assoc[$c['id_pegawai']];
+                            } else {
+                                $c['nama'] = 'Nama tidak ditemukan';
+                            }
+                        }
+
+                        // Return the view with the merged data
+                        return view('/admin/dataCuti', [
+                            'cuti_data' => $cuti,
+                            'meta_data' => $cuti_data['data'],
+                            'title' => $title
+                        ]);
+                    } else {
+                        // Error fetching data pegawai
+                        curl_close($ch_data_pegawai);
+                        return $this->renderErrorView($http_status_code_data_pegawai);
+                    }
                 } else {
-                    return $this->renderErrorView($http_status_code_cuti);
+                    // Error fetching data pegawai
+                    $error_message = curl_error($ch_data_pegawai);
+                    curl_close($ch_data_pegawai);
+                    return $this->renderErrorView(500);
                 }
             } else {
-                return $this->renderErrorView(500);
+                // Error fetching cuti data
+                curl_close($ch_cuti);
+                return $this->renderErrorView($http_status_code_cuti);
             }
-    
-            curl_close($ch_cuti);
         } else {
-            return $this->renderErrorView(401);
+            // Error fetching cuti data
+            $error_message = curl_error($ch_cuti);
+            curl_close($ch_cuti);
+            return $this->renderErrorView(500);
         }
+    } else {
+        // User not logged in
+        return $this->renderErrorView(401);
     }
-    
+}
+
 
     public function tambahCuti()
     {

@@ -13,63 +13,122 @@ class berkasController extends BaseController
     }
 
     public function berkasPegawai()
-    {
-        $title = 'Berkas Pegawai';
+{
+    $title = 'Berkas Pegawai';
 
-        // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
-        $page = $this->request->getGet('page') ?? 1;
+    // Retrieve the value of the 'page' parameter from the request, default to 1 if not present
+    $page = $this->request->getGet('page') ?? 1;
 
-        // Retrieve the value of the 'size' parameter from the request, default to 5 if not present
-        $size = $this->request->getGet('size') ?? 10;
+    // Retrieve the value of the 'size' parameter from the request, default to 10 if not present
+    $size = $this->request->getGet('size') ?? 10;
 
-        // Check if the user is logged in
-        // Retrieve the stored JWT token
-        if (session()->has('jwt_token')) {
-            $token = session()->get('jwt_token');
-            // URL for fetching akun data
-            $akun_url = $this->api_url . '/pegawai/berkas?page=' . $page . '&size=' . $size;
+    // Check if the user is logged in
+    // Retrieve the stored JWT token
+    if (session()->has('jwt_token')) {
+        $token = session()->get('jwt_token');
+        // URL for fetching berkas data
+        $berkas_url = $this->api_url . '/pegawai/berkas?page=' . $page . '&size=' . $size;
 
-            // Initialize cURL session
-            $ch_akun = curl_init($akun_url);
+        // Initialize cURL session for berkas data
+        $ch_berkas = curl_init($berkas_url);
+        curl_setopt($ch_berkas, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_berkas, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
 
-            // Set cURL options
-            curl_setopt($ch_akun, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch_akun, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
+        // Execute the cURL request for fetching berkas data
+        $response_berkas = curl_exec($ch_berkas);
 
-            // Execute the cURL request for fetching akun data
-            $response_akun = curl_exec($ch_akun);
+        // Check the API response for berkas data
+        if ($response_berkas) {
+            $http_status_code_berkas = curl_getinfo($ch_berkas, CURLINFO_HTTP_CODE);
 
-            // Check the API response for akun data
-            if ($response_akun) {
-                $http_status_code_akun = curl_getinfo($ch_akun, CURLINFO_HTTP_CODE);
+            if ($http_status_code_berkas === 200) {
+                // Berkas data fetched successfully
+                $berkas_data = json_decode($response_berkas, true);
 
-                if ($http_status_code_akun === 200) {
-                    // Akun data fetched successfully
-                    $berkas_data = json_decode($response_akun, true);
+                // Close the cURL session for berkas data
+                curl_close($ch_berkas);
 
-                    // Close the cURL session
-                    curl_close($ch_akun);
+                // Now, include data from dataPegawai controller
+                // URL for fetching data pegawai
+                $data_pegawai_url = $this->api_url . '/pegawai';
 
-                    // Return the view with berkas data
-                    return view('/admin/berkasPegawai', ['berkas_data' => $berkas_data['data']['berkas_pegawai'], 'meta_data' => $berkas_data['data'], 'title' => $title]);
+                // Initialize cURL session for data pegawai
+                $ch_data_pegawai = curl_init($data_pegawai_url);
+                curl_setopt($ch_data_pegawai, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch_data_pegawai, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $token,
+                ]);
+
+                // Execute the cURL request for fetching data pegawai
+                $response_data_pegawai = curl_exec($ch_data_pegawai);
+
+                // Check the API response for data pegawai
+                if ($response_data_pegawai) {
+                    $http_status_code_data_pegawai = curl_getinfo($ch_data_pegawai, CURLINFO_HTTP_CODE);
+
+                    if ($http_status_code_data_pegawai === 200) {
+                        // Data pegawai fetched successfully
+                        $data_pegawai = json_decode($response_data_pegawai, true);
+
+                        // Close the cURL session for data pegawai
+                        curl_close($ch_data_pegawai);
+
+                        // Merge berkas data with akun data
+                        $berkas_pegawai = $berkas_data['data']['berkas_pegawai'];
+                        $akun_pegawai = $data_pegawai['data'];
+
+                        // Create an associative array for akun data with id_pegawai as the key
+                        $akun_pegawai_assoc = [];
+                        foreach ($akun_pegawai as $akun) {
+                            $akun_pegawai_assoc[$akun['id']] = $akun['nama'];
+                        }
+
+                        // Add 'nama' field to berkas data if id_pegawai matches
+                        foreach ($berkas_pegawai as &$berkas) {
+                            if (isset($akun_pegawai_assoc[$berkas['id_pegawai']])) {
+                                $berkas['nama'] = $akun_pegawai_assoc[$berkas['id_pegawai']];
+                            } else {
+                                $berkas['nama'] = 'Nama tidak ditemukan';
+                            }
+                        }
+
+                        // Return the view with the merged data
+                        return view('/admin/berkasPegawai', [
+                            'berkas_data' => $berkas_pegawai,
+                            'meta_data' => $berkas_data['data'],
+                            'title' => $title
+                        ]);
+                    } else {
+                        // Error fetching data pegawai
+                        curl_close($ch_data_pegawai);
+                        return $this->renderErrorView($http_status_code_data_pegawai);
+                    }
                 } else {
-                    // Error fetching akun data
-                    curl_close($ch_akun);
-                    return $this->renderErrorView($http_status_code_akun);
+                    // Error fetching data pegawai
+                    $error_message = curl_error($ch_data_pegawai);
+                    curl_close($ch_data_pegawai);
+                    return $this->renderErrorView(500);
                 }
             } else {
-                // Error fetching akun data
-                $error_message = curl_error($ch_akun);
-                curl_close($ch_akun);
-                return $this->renderErrorView(500);
+                // Error fetching berkas data
+                curl_close($ch_berkas);
+                return $this->renderErrorView($http_status_code_berkas);
             }
         } else {
-            // User not logged in
-            return $this->renderErrorView(401);
+            // Error fetching berkas data
+            $error_message = curl_error($ch_berkas);
+            curl_close($ch_berkas);
+            return $this->renderErrorView(500);
         }
+    } else {
+        // User not logged in
+        return $this->renderErrorView(401);
     }
+}
+
+
 
 
     public function tambahBerkas()
