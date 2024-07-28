@@ -124,13 +124,54 @@ class CutiController extends BaseController
 }
 
 
-    public function tambahCuti()
-    {
-        $title = 'Tambah Cuti';
 
-        // If the request method is not POST or form data is missing, render the add account view
-        echo view('/admin/tambahCuti', ['title' => $title]);
+public function tambahCuti()
+{
+    $title = 'Tambah Cuti';
+
+    // Check if the user is logged in
+    if (session()->has('jwt_token')) {
+        $token = session()->get('jwt_token');
+
+        // Fetch alasan cuti data
+        $alasan_cuti_url = $this->api_url . '/ref/alasan-cuti';
+        $ch_alasan_cuti = curl_init($alasan_cuti_url);
+        curl_setopt($ch_alasan_cuti, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_alasan_cuti, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
+
+        $response_alasan_cuti = curl_exec($ch_alasan_cuti);
+
+        if ($response_alasan_cuti) {
+            $http_status_code_alasan_cuti = curl_getinfo($ch_alasan_cuti, CURLINFO_HTTP_CODE);
+
+            if ($http_status_code_alasan_cuti === 201) {
+                $alasan_cuti_data = json_decode($response_alasan_cuti, true);
+                curl_close($ch_alasan_cuti);
+
+                // Render the add cuti view with the alasan cuti data
+                return view('/admin/tambahCuti', [
+                    'title' => $title,
+                    'alasan_cuti_data' => $alasan_cuti_data['data']
+                ]);
+            } else {
+                // Error fetching alasan cuti data
+                curl_close($ch_alasan_cuti);
+                return $this->renderErrorView($http_status_code_alasan_cuti);
+            }
+        } else {
+            // Error fetching alasan cuti data
+            $error_message = curl_error($ch_alasan_cuti);
+            curl_close($ch_alasan_cuti);
+            return $this->renderErrorView(500);
+        }
+    } else {
+        // User not logged in
+        return $this->renderErrorView(401);
     }
+}
+
 
     public function submitTambahCuti()
     {
@@ -211,55 +252,85 @@ class CutiController extends BaseController
     }
 
     public function editCuti($userId)
-    {
+{
+    if (session()->has('jwt_token')) {
+        // Retrieve the stored JWT Token
+        $token = session()->get('jwt_token');
 
-        if (session()->has('jwt_token')) {
+        // Fetch the user data from the API or database based on the user ID
+        $cuti_url = $this->api_url . '/kehadiran/cuti/' . $userId;
 
-            //retrieve the stored JWT Token
-            $token = session()->get('jwt_token');
+        // Initialize cURL session
+        $ch_cuti = curl_init($cuti_url);
 
-            // Fetch the user data from the API or database based on the user ID
-            $cuti_url = $this->api_url . '/kehadiran/cuti/' . $userId;
+        // Set cURL options
+        curl_setopt($ch_cuti, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_cuti, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
 
-            //Initialize cURL session
-            $ch_cuti = curl_init($cuti_url);
+        // Execute the cURL request for fetching user data
+        $response_cuti = curl_exec($ch_cuti);
 
-            // Set cURL options
-            curl_setopt($ch_cuti, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch_cuti, CURLOPT_HTTPHEADER, [
-                'Authorization: Bearer ' . $token,
-            ]);
+        // Check the API response for user data
+        if ($response_cuti) {
+            $http_status_code = curl_getinfo($ch_cuti, CURLINFO_HTTP_CODE);
 
-            // Execute the cURL request for fetching user data
-            $response_user = curl_exec($ch_cuti);
+            if ($http_status_code === 200) {
+                // User data fetched successfully
+                $cutiData = json_decode($response_cuti, true);
 
-            // Check the API response for user data
+                // Fetch alasan cuti data
+                $alasan_cuti_url = $this->api_url . '/ref/alasan-cuti';
+                $ch_alasan_cuti = curl_init($alasan_cuti_url);
+                curl_setopt($ch_alasan_cuti, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch_alasan_cuti, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $token,
+                ]);
 
-            if ($response_user) {
-                $http_status_code = curl_getinfo($ch_cuti, CURLINFO_HTTP_CODE);
+                $response_alasan_cuti = curl_exec($ch_alasan_cuti);
 
-                if ($http_status_code === 200) {
-                    //user data fetched successfully
-                    $cutiData = json_decode($response_user, true);
+                if ($response_alasan_cuti) {
+                    $http_status_code_alasan_cuti = curl_getinfo($ch_alasan_cuti, CURLINFO_HTTP_CODE);
 
-                    //Render the view to edit user data, passing the user data
-                    return view('/admin/editCuti', ['cutiData' => $cutiData['data'], 'userId' => $userId, 'title' => 'Edit Cuti']);
+                    if ($http_status_code_alasan_cuti === 201) {
+                        $alasan_cuti_data = json_decode($response_alasan_cuti, true);
+                        curl_close($ch_alasan_cuti);
+
+                        // Render the view to edit user data, passing the user data and alasan cuti data
+                        return view('/admin/editCuti', [
+                            'cutiData' => $cutiData['data'],
+                            'userId' => $userId,
+                            'title' => 'Edit Cuti',
+                            'alasan_cuti_data' => $alasan_cuti_data['data']
+                        ]);
+                    } else {
+                        // Error fetching alasan cuti data
+                        curl_close($ch_alasan_cuti);
+                        return "Error fetching alasan cuti data. HTTP Status Code: $http_status_code_alasan_cuti";
+                    }
                 } else {
-                    // Error fetching user data
-                    return "Error fetching user data. HTTP Status Code: $http_status_code $userId";
+                    // Error fetching alasan cuti data
+                    $error_message = curl_error($ch_alasan_cuti);
+                    curl_close($ch_alasan_cuti);
+                    return "Error fetching alasan cuti data: $error_message";
                 }
             } else {
-                //Error fetching user data
-                return "Error fetching user data.";
+                // Error fetching user data
+                curl_close($ch_cuti);
+                return "Error fetching user data. HTTP Status Code: $http_status_code";
             }
-
-            //Close the cURL session for user data
-            curl_close($ch_cuti);
         } else {
-            //User not logged in
-            return "User not logged in. Please log in first. ";
+            // Error fetching user data
+            $error_message = curl_error($ch_cuti);
+            curl_close($ch_cuti);
+            return "Error fetching user data: $error_message";
         }
+    } else {
+        // User not logged in
+        return "User not logged in. Please log in first.";
     }
+}
 
     public function submitEditCuti($userId)
     {

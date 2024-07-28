@@ -132,7 +132,7 @@ class FileController extends BaseController
         $page = $this->request->getGet('page') ?? 1;
 
         // Retrieve the value of the 'size' parameter from the request, default to 5 if not present
-        $size = $this->request->getGet('size') ?? 5;
+        $size = $this->request->getGet('size') ?? 10;
 
         // Check if the user is logged in
         // Retrieve the stored JWT token
@@ -140,7 +140,7 @@ class FileController extends BaseController
             $token = session()->get('jwt_token');
 
             // URLs for fetching data
-            $akun_url = $this->api_url . '/pegawai?page=' . $page . '&size=' . $size;
+            $akun_url = $this->api_url . '/pegawai';
             $foto_url = $this->api_url . '/pegawai/foto?page=' . $page . '&size=' . $size;
 
             // Initialize cURL session for akun data
@@ -191,7 +191,7 @@ class FileController extends BaseController
 
                             // Match foto with pegawai data
                             $matched_data = [];
-                            foreach ($akun_data['data']['pegawai'] as $pegawai) {
+                            foreach ($akun_data['data'] as $pegawai) {
                                 foreach ($foto_data['data']['foto_pegawai'] as $foto) {
                                     if ($foto['id_pegawai'] === $pegawai['id']) {
                                         // Match found, add foto to matched data
@@ -205,8 +205,8 @@ class FileController extends BaseController
                             }
 
                             return view('/admin/dataFotoPegawai', [
-                                'akun_data' => $akun_data['data']['pegawai'],
-                                'meta_data' => $akun_data['data'],
+                                'akun_data' => $akun_data['data'],
+                                'meta_data' => $foto_data['data'],
                                 'matched_data' => $matched_data,
                                 'title' => $title
                             ]);
@@ -513,7 +513,7 @@ class FileController extends BaseController
 
                             if ($http_status_code === 200) {
                                 // Account updated successfully
-                                return redirect()->to(base_url('datafotopegawai?page=1&size=5'));
+                                return redirect()->to(base_url('datafotopegawai?page=1&size=10'));
                             } else {
                                 // Error response from the API
                                 log_message('error', 'Error updating account: ' . $response);

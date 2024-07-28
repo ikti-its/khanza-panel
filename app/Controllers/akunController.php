@@ -52,18 +52,57 @@ class AkunController extends BaseController
 
 
     public function tambahAkun()
-    {
-        $title = 'Tambah Akun';
-    
-        // Check if jwt_token session exists
-        if (session()->has('jwt_token')) {
-            // If session exists, render the add account view
-            return view('/admin/tambahAkun', ['title' => $title]);
+{
+    $title = 'Tambah Akun';
+
+    // Check if jwt_token session exists
+    if (session()->has('jwt_token')) {
+        $token = session()->get('jwt_token');
+        
+        // Fetch the user data from the API or database based on the user ID
+        $user_url = $this->api_url . '/ref/role';
+
+        // Initialize cURL session
+        $ch_user = curl_init($user_url);
+
+        // Set cURL options
+        curl_setopt($ch_user, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_user, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+        ]);
+
+        // Execute the cURL request for fetching user data
+        $response_user = curl_exec($ch_user);
+
+        // Check the API response for user data
+        if ($response_user) {
+            $http_status_code = curl_getinfo($ch_user, CURLINFO_HTTP_CODE);
+            curl_close($ch_user);
+
+            if ($http_status_code === 201) {
+                // User data fetched successfully
+                $userData = json_decode($response_user, true);
+
+                // Render the view to edit user data, passing the user data
+                return view('/admin/tambahAkun', [
+                    'userData' => $userData['data'],
+                    'title' => $title
+                ]);
+            } else {
+                // Error fetching user data
+                return $this->renderErrorView($http_status_code);
+            }
         } else {
-            // If session does not exist, redirect or handle unauthorized access
-            return $this->renderErrorView(401); // You can define your own error handling method
+            // Error in cURL request
+            curl_close($ch_user);
+            return $this->renderErrorView(500); // Internal Server Error
         }
+    } else {
+        // If session does not exist, redirect or handle unauthorized access
+        return $this->renderErrorView(401); // Unauthorized
     }
+}
+
     
 
     public function submitTambahAkun()
@@ -213,55 +252,62 @@ class AkunController extends BaseController
     }
 
     public function editAkun($userId)
-{
-    if (session()->has('jwt_token')) {
-        // Retrieve the stored JWT Token
-        $token = session()->get('jwt_token');
-
-        // Fetch the user data from the API or database based on the user ID
-        $user_url = $this->api_url . '/akun/' . $userId;
-
-        // Initialize cURL session
-        $ch_user = curl_init($user_url);
-
-        // Set cURL options
-        curl_setopt($ch_user, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch_user, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer ' . $token,
-        ]);
-
-        // Execute the cURL request for fetching user data
-        $response_user = curl_exec($ch_user);
-
-        // Check the API response for user data
-        if ($response_user) {
-            $http_status_code = curl_getinfo($ch_user, CURLINFO_HTTP_CODE);
+    {
+        if (session()->has('jwt_token')) {
+            // Retrieve the stored JWT Token
+            $token = session()->get('jwt_token');
+    
+            // Fetch the user data from the API or database based on the user ID
+            $user_url = $this->api_url . '/akun/' . $userId;
+            $role_url = $this->api_url . '/ref/role'; // URL for fetching roles
+    
+            // Initialize cURL session for user data
+            $ch_user = curl_init($user_url);
+            curl_setopt($ch_user, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch_user, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $token,
+            ]);
+    
+            // Execute the cURL request for fetching user data
+            $response_user = curl_exec($ch_user);
+            $http_status_code_user = curl_getinfo($ch_user, CURLINFO_HTTP_CODE);
             curl_close($ch_user);
-
-            if ($http_status_code === 200) {
-                // User data fetched successfully
+    
+            // Initialize cURL session for role data
+            $ch_role = curl_init($role_url);
+            curl_setopt($ch_role, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch_role, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $token,
+            ]);
+    
+            // Execute the cURL request for fetching role data
+            $response_role = curl_exec($ch_role);
+            $http_status_code_role = curl_getinfo($ch_role, CURLINFO_HTTP_CODE);
+            curl_close($ch_role);
+    
+            // Check the API responses
+            if ($response_user && $http_status_code_user === 200 && $response_role && $http_status_code_role === 201) {
+                // Both user data and role data fetched successfully
                 $userData = json_decode($response_user, true);
-
-                // Render the view to edit user data, passing the user data
+                $roleData = json_decode($response_role, true);
+    
+                // Render the view to edit user data, passing the user data and role data
                 return view('/admin/editAkun', [
                     'userData' => $userData['data'],
+                    'roleData' => $roleData['data'],
                     'userId' => $userId,
                     'title' => 'Edit User'
                 ]);
             } else {
-                // Error fetching user data
-                return $this->renderErrorView($http_status_code);
+                // Error fetching data
+                return $this->renderErrorView($http_status_code_user);
             }
         } else {
-            // Error fetching user data
-            curl_close($ch_user);
-            return $this->renderErrorView(500);
+            // User not logged in
+            return $this->renderErrorView(401);
         }
-    } else {
-        // User not logged in
-        return $this->renderErrorView(401);
     }
-}
+    
 
 public function submitEditAkun($userId)
 {

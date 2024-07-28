@@ -87,17 +87,9 @@
                     <div class="sm:flex">
                         <select id="role" name="role" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" required>
                             <option value="">Pilih Role</option>
-                            <option value="1337">1337 (Developer)</option>
-                            <option value="1">1 (admin)</option>
-                            <option value="2">2 (pegawai)</option>
-                            <option value="3">3 (Kepala Departemen)</option>
-                            <option value="4000">4000 (Kepala Inventaris)</option>
-                            <option value="4001">4001 (Apoteker)</option>
-                            <option value="4002">4002 (Inventaris)</option>
-                            <option value="4003">4003 (Pengadaan)</option>
-                            <option value="4004">4004 (Gudang)</option>
-                            <option value="5000">5000 (Kepala Keuangan)</option>
-                            <option value="5001">5001 (Keuangan)</option>
+                            <?php foreach ($userData as $role) : ?>
+                                <option value="<?= $role['id']; ?>"><?= $role['id']; ?> (<?= $role['nama']; ?>)</option>
+                            <?php endforeach; ?>
                         </select>
                         <div id="roleError" class="text-sm text-red-500 hidden">Role harus dipilih.</div>
                     </div>

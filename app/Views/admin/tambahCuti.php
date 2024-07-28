@@ -20,7 +20,7 @@
 
                 <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
 
-                <input id="af-account-id-status" name="status" type="hidden" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:outline-teal-500 focus:ring-teal-500" value="Diproses">
+                    <input id="af-account-id-status" name="status" type="hidden" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:outline-teal-500 focus:ring-teal-500" value="Diproses">
 
                     <div class="sm:col-span-3">
                         <label for="af-account-id-pegawai" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
@@ -74,12 +74,9 @@
                     <div class="sm:col-span-9">
                         <div class="sm:flex">
                             <select name="id_alasan_cuti" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                                <option value="S" selected>Sakit</option>
-                                <option value="I">Izin</option>
-                                <option value="CT">Cuti Tahunan</option>
-                                <option value="CB">Cuti Besar</option>
-                                <option value="CM">Cuti Melahirkan</option>
-                                <option value="CU">Cuti karena Alasan Penting</option>
+                                <?php foreach ($alasan_cuti_data as $alasan) : ?>
+                                    <option value="<?= $alasan['id'] ?>"><?= $alasan['nama'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>

@@ -18,279 +18,278 @@
             <!-- Grid -->
 
             <div class="sm:col-span-3">
-                    
 
 
-            <div class="sm:col-span-3">
-                <label for="af-account-email" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    ID Akun
-                </label>
-            </div>
 
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <input id="af-id-akun" name="id_akun" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="36 characters uuid">
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-3">
-                <label for="af-pegawai-nip" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    NIP
-                </label>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <div class="space-y-2">
-                    <input id="af-pegawai-nip" name="nip" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your nip">
-                </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-3">
-                <label for="af-pegawai-nama" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    Nama
-                </label>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <div class="space-y-2">
-                    <input id="af-pegawai-nama" name="nama" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your name">
-                </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-3">
-                <div class="inline-block">
-                    <label for="af-pegawai-kelamin" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                        Jenis Kelamin
+                <div class="sm:col-span-3">
+                    <label for="af-account-email" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        ID Akun
                     </label>
                 </div>
-            </div>
-            <!-- End Col -->
 
-            <div class="sm:col-span-9">
-                <div class="sm:flex">
-                    <select name="jenis_kelamin" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="L" selected>(L) Laki-laki</option>
-                        <option value="P">(P) Perempuan</option>
-                    </select>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <input id="af-id-akun" name="id_akun" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="36 characters uuid">
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-3">
-                <div class="inline-block">
-                    <label for="af-pegawai-jabatan" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                        Jabatan
+                <div class="sm:col-span-3">
+                    <label for="af-pegawai-nip" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        NIP
                     </label>
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-9">
-                <div class="sm:flex">
-                    <select name="jabatan" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="1000" selected>1000 Kepala Departemen</option>
-                        <option value="1001">1001 Wakil Kepala Departemen</option>
-                        <option value="1002">1002 Pegawai</option>
-
-                    </select>
+                <div class="sm:col-span-9">
+                    <div class="space-y-2">
+                        <input id="af-pegawai-nip" name="nip" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your nip">
+                    </div>
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-3">
-                <div class="inline-block">
+                <div class="sm:col-span-3">
+                    <label for="af-pegawai-nama" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        Nama
+                    </label>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <div class="space-y-2">
+                        <input id="af-pegawai-nama" name="nama" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your name">
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                    <div class="inline-block">
+                        <label for="af-pegawai-kelamin" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                            Jenis Kelamin
+                        </label>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <div class="sm:flex">
+                        <select name="jenis_kelamin" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+                            <option value="L" selected>(L) Laki-laki</option>
+                            <option value="P">(P) Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                    <div class="inline-block">
+                        <label for="af-pegawai-jabatan" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                            Jabatan
+                        </label>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <div class="sm:flex">
+                        <select name="jabatan" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+                            <option value="">Pilih Jabatan</option>
+                            <?php foreach ($jabatanData as $jabatan) : ?>
+                                <option value="<?= $jabatan['id']; ?>"><?= $jabatan['id'] . ' ' . $jabatan['nama']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                    <div class="inline-block">
+                        <label for="af-pegawai-departemen" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                            Departemen
+                        </label>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <div class="sm:flex">
+                        <select name="departemen" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+                            <option value="">Pilih Departemen</option>
+                            <?php foreach ($departemenData as $departemen) : ?>
+                                <option value="<?= $departemen['id']; ?>"><?= $departemen['id'] . ' (' . $departemen['nama'] . ')'; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                    <div class="inline-block">
+                        <label for="af-pegawai-status" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                            Status Aktif
+                        </label>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <div class="sm:flex">
+                        <select name="status_aktif" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+                            <option value="">Pilih Status Aktif</option>
+                            <?php foreach ($statusAktifData as $status) : ?>
+                                <option value="<?= $status['id']; ?>"><?= $status['id'] . ' (' . $status['nama'] . ')'; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                    <div class="inline-block">
+                        <label for="af-pegawai-jenis" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                            Jenis Pegawai
+                        </label>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-9">
+                    <div class="sm:flex">
+                        <select name="jenis_pegawai" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+                            <option value="Tetap" selected>Tetap</option>
+                            <option value="Kontrak">Kontrak</option>
+                            <option value="Magang">Magang</option>
+                            <option value="Istimewa">Istimewa</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
                     <label for="af-pegawai-departemen" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                        Departemen
+                        Telepon
                     </label>
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-9">
-                <div class="sm:flex">
-                    <select name="departemen" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="1000" selected>(1000 Pelayanan Medik dan Keperawatan)</option>
-                        <option value="1001">1001 (Pelayanan Penunjang Medik)</option>
-                        <option value="2000">2000 (SDM Pendidikan dan Penelitian)</option>
-                        <option value="2001">2001 (Perencanaan dan Evaluasi)</option>
-                        <option value="2002">2002 (Keuangan dan BMN)</option>
-                        <option value="2003">2003 (Organisasi dan Umum)</option>
-                    </select>
+                <div class="sm:col-span-9">
+                    <div class="space-y-2">
+                        <input id="af-pegawai-departemen" name="telepon" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your telepon">
+                    </div>
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-3">
-                <div class="inline-block">
-                    <label for="af-pegawai-status" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                        Status Aktif
+                <div class="sm:col-span-3">
+                    <label for="af-tanggal-masuk" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        Tanggal Masuk
                     </label>
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-9">
-                <div class="sm:flex">
-                    <select name="status_aktif" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="A" selected>(A) Aktif</option>
-                        <option value="BH">(BH) Berhenti dengan Hormat</option>
-                        <option value="C">(C) Cuti</option>
-                        <option value="R">(R) Resign</option>
-                        <option value="BT">(BH) Berhenti dengan Tidak Hormat</option>
-                    </select>
+                <div class="sm:col-span-9">
+                    <div class="space-y-2">
+                        <!-- Input field to display the selected date -->
+                        <input id="selected-date" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Selected Date" readonly>
+                        <!-- Hidden input field to store the selected date value -->
+                        <input id="tanggal-masuk" name="tanggal_masuk" type="hidden">
+                    </div>
                 </div>
-            </div>
-            <!-- End Col -->
+                <!-- End Col -->
 
-            <div class="sm:col-span-3">
-                <div class="inline-block">
-                    <label for="af-pegawai-jenis" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                        Jenis Pegawai
-                    </label>
-                </div>
-            </div>
-            <!-- End Col -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Initialize Flatpickr
+                        flatpickr('#selected-date', {
+                            altInput: true, // Enable to use an alternative input field
+                            altFormat: 'Y-m-d', // Format of the alternative input field
+                            dateFormat: 'Y-m-d', // Date format
 
-            <div class="sm:col-span-9">
-                <div class="sm:flex">
-                    <select name="jenis_pegawai" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                        <option value="Tetap" selected>Tetap</option>
-                        <option value="Kontrak">Kontrak</option>
-                        <option value="Magang">Magang</option>
-                        <option value="Istimewa">Istimewa</option>
-                    </select>
-                </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-3">
-                <label for="af-pegawai-departemen" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    Telepon
-                </label>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <div class="space-y-2">
-                    <input id="af-pegawai-departemen" name="telepon" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your telepon">
-                </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-3">
-                <label for="af-tanggal-masuk" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    Tanggal Masuk
-                </label>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <div class="space-y-2">
-                    <!-- Input field to display the selected date -->
-                    <input id="selected-date" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Selected Date" readonly>
-                    <!-- Hidden input field to store the selected date value -->
-                    <input id="tanggal-masuk" name="tanggal_masuk" type="hidden">
-                </div>
-            </div>
-            <!-- End Col -->
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Initialize Flatpickr
-                    flatpickr('#selected-date', {
-                        altInput: true, // Enable to use an alternative input field
-                        altFormat: 'Y-m-d', // Format of the alternative input field
-                        dateFormat: 'Y-m-d', // Date format
-
-                        onClose: function(selectedDates, dateStr, instance) {
-                            // Update the hidden input field with the selected date value
-                            document.getElementById('tanggal-masuk').value = dateStr;
-                        }
+                            onClose: function(selectedDates, dateStr, instance) {
+                                // Update the hidden input field with the selected date value
+                                document.getElementById('tanggal-masuk').value = dateStr;
+                            }
+                        });
                     });
-                });
-            </script>
+                </script>
 
-            <!-- End Col -->
+                <!-- End Col -->
 
 
-            <div class="sm:col-span-3">
-                <label for="af-pegawai-kota" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    Kota
-                </label>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <div class="space-y-2">
-                    <input id="af-pegawai-kota" name="kota" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kota">
+                <div class="sm:col-span-3">
+                    <label for="af-pegawai-kota" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        Kota
+                    </label>
                 </div>
-            </div>
+                <!-- End Col -->
 
-            <div class="sm:col-span-3">
-                <label for="af-pegawai-kode-pos" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    Kode Pos
-                </label>
-            </div>
-            <!-- End Col -->
-
-            <div class="sm:col-span-9">
-                <div class="space-y-2">
-                    <input id="af-pegawai-kode-pos" name="kode_pos" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kode_pos">
+                <div class="sm:col-span-9">
+                    <div class="space-y-2">
+                        <input id="af-pegawai-kota" name="kota" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kota">
+                    </div>
                 </div>
-            </div>
-            <!-- End Col -->
 
-            <div class="sm:col-span-3">
-                <label for="af-account-alamat" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
-                    Alamat
-                </label>
-            </div>
-            <!-- End Col -->
-            <div class="sm:col-span-9">
-                <input readonly id="af-account-alamat-edit" type="text" name="alamat" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:outline-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Your alamat" value="<?= $lokasi_data['alamat'] ?? '' ?>">
-            </div>
-            <!-- End Col -->
-            <div class="sm:col-span-3">
-                <label for="af-account-lOkasi" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
-                    Denah Lokasi
-                </label>
-            </div>
-            <!-- End Col -->
-            <div class="sm:col-span-9">
-                <input id="af-account-alamat-lat" type="text" name="latitude" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg disabled:opacity-50 disabled:pointer-events-none focus:outline-teal-500 focus:ring-teal-500" placeholder="Your alamat" value="<?= $lokasi_data['latitude'] ?? '' ?>" readonly>
-                <input id="af-account-alamat-lon" type="text" name="longitude" class="mt-4 py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg disabled:opacity-50 disabled:pointer-events-none focus:outline-teal-500 focus:ring-teal-500" placeholder="Your alamat" value="<?= $lokasi_data['longitude'] ?? '' ?>" readonly>
-                <div id="map2" class="mt-4 py-2 px-3 block w-full h-72 rounded-xl"></div>
-            </div>
-            <!-- End Col -->
+                <div class="sm:col-span-3">
+                    <label for="af-pegawai-kode-pos" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
+                        Kode Pos
+                    </label>
+                </div>
+                <!-- End Col -->
 
+                <div class="sm:col-span-9">
+                    <div class="space-y-2">
+                        <input id="af-pegawai-kode-pos" name="kode_pos" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Enter your kode_pos">
+                    </div>
+                </div>
+                <!-- End Col -->
+
+                <div class="sm:col-span-3">
+                    <label for="af-account-alamat" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
+                        Alamat
+                    </label>
+                </div>
+                <!-- End Col -->
+                <div class="sm:col-span-9">
+                    <input readonly id="af-account-alamat-edit" type="text" name="alamat" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:outline-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Your alamat" value="<?= $lokasi_data['alamat'] ?? '' ?>">
+                </div>
+                <!-- End Col -->
+                <div class="sm:col-span-3">
+                    <label for="af-account-lOkasi" class="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
+                        Denah Lokasi
+                    </label>
+                </div>
+                <!-- End Col -->
+                <div class="sm:col-span-9">
+                    <input id="af-account-alamat-lat" type="text" name="latitude" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg disabled:opacity-50 disabled:pointer-events-none focus:outline-teal-500 focus:ring-teal-500" placeholder="Your alamat" value="<?= $lokasi_data['latitude'] ?? '' ?>" readonly>
+                    <input id="af-account-alamat-lon" type="text" name="longitude" class="mt-4 py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg disabled:opacity-50 disabled:pointer-events-none focus:outline-teal-500 focus:ring-teal-500" placeholder="Your alamat" value="<?= $lokasi_data['longitude'] ?? '' ?>" readonly>
+                    <div id="map2" class="mt-4 py-2 px-3 block w-full h-72 rounded-xl"></div>
+                </div>
+                <!-- End Col -->
+
+                <!-- End Grid -->
+                <div class="mt-5 flex justify-end gap-x-2">
+                    <button type="button" id="edit-location-btn" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:hover:text-white">
+                        Ubah lokasi
+                    </button>
+                </div>
+
+                <div class="mt-5 flex justify-end gap-x-2">
+                    <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                        Batal
+                    </button>
+                    <button type="submit" id="submitButton" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                        Tambah Pegawai
+                    </button>
+                </div>
+
+            </div>
             <!-- End Grid -->
-            <div class="mt-5 flex justify-end gap-x-2">
-                <button type="button" id="edit-location-btn" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:hover:text-white">
-                    Ubah lokasi
-                </button>
-            </div>
 
-            <div class="mt-5 flex justify-end gap-x-2">
-                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    Batal
-                </button>
-                <button type="submit" id="submitButton" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-600 text-white hover:bg-teal-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    Tambah Pegawai
-                </button>
-            </div>
 
+        </form>
     </div>
-    <!-- End Grid -->
-
-
-    </form>
-</div>
-<!-- End Card -->
+    <!-- End Card -->
 </div>
 <!-- End Card Section -->
 

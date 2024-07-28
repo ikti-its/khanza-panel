@@ -136,4 +136,9 @@ $routes->delete('/hapusfotopegawai/(:segment)', 'fileController::hapusFotoPegawa
 
 $routes->get('/datakehadiran', 'kehadiranController::dataKehadiran', ['filter' => 'auth'] );
 
+$routes->get('/datashift', 'ShiftController::dataShift', ['filter' => 'auth'] );
+$routes->get('/tambahshift', 'ShiftController::tambahShift', ['filter' => 'auth'] );
+$routes->post('/submittambahshift', 'ShiftController::submitTambahShift', ['filter' => 'auth']);
+$routes->get('/editshift/(:any)', 'ShiftController::editShift/$1', ['filter' => 'auth']);
+
 ?>

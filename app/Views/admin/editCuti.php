@@ -72,17 +72,17 @@
                     <!-- End Col -->
 
                     <div class="sm:col-span-9">
-                        <div class="sm:flex">
-                            <select name="id_alasan_cuti" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                                <option value="S" <?= $cutiData['id_alasan_cuti'] == 'S' ? 'selected' : '' ?>>Sakit</option>
-                                <option value="I" <?= $cutiData['id_alasan_cuti'] == 'I' ? 'selected' : '' ?>>Izin</option>
-                                <option value="CT" <?= $cutiData['id_alasan_cuti'] == 'CT' ? 'selected' : '' ?>>Cuti Tahunan</option>
-                                <option value="CB" <?= $cutiData['id_alasan_cuti'] == 'CB' ? 'selected' : '' ?>>Cuti Besar</option>
-                                <option value="CM" <?= $cutiData['id_alasan_cuti'] == 'CM' ? 'selected' : '' ?>>Cuti Melahirkan</option>
-                                <option value="CU" <?= $cutiData['id_alasan_cuti'] == 'CU' ? 'selected' : '' ?>>Cuti karena Alasan Penting</option>
-                            </select>
-                        </div>
-                    </div>
+    <div class="sm:flex">
+        <select name="id_alasan_cuti" class="py-2 px-3 pe-9 block w-full sm:w-auto border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+            <?php foreach ($alasan_cuti_data as $alasan): ?>
+                <option value="<?= $alasan['id'] ?>" <?= $cutiData['id_alasan_cuti'] == $alasan['id'] ? 'selected' : '' ?>>
+                    <?= $alasan['nama'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
+
 
                     <div class="sm:col-span-3">
                         <div class="inline-block">

@@ -78,19 +78,53 @@ class pegawaiController extends BaseController
 }
 
 
-    public function tambahPegawai()
-    {
-        $title = 'Tambah Pegawai';
+public function tambahPegawai()
+{
+    $title = 'Tambah Pegawai';
 
-         // Check if jwt_token session exists
-         if (session()->has('jwt_token')) {
-            // If session exists, render the add account view
-            return view('/admin/tambahPegawai', ['title' => $title]);
-        } else {
-            // If session does not exist, redirect or handle unauthorized access
-            return $this->renderErrorView(401); // You can define your own error handling method
+    // Check if jwt_token session exists
+    if (session()->has('jwt_token')) {
+        // Retrieve the stored JWT Token
+        $token = session()->get('jwt_token');
+
+        // Define URLs
+        $jabatan_url = $this->api_url . '/ref/jabatan';
+        $departemen_url = $this->api_url . '/ref/departemen';
+        $status_aktif_url = $this->api_url . '/ref/status-aktif';
+
+        // Initialize cURL session and options
+        $dataUrls = [$jabatan_url, $departemen_url, $status_aktif_url];
+        $dataKeys = ['jabatanData', 'departemenData', 'statusAktifData'];
+        $apiData = [];
+
+        foreach ($dataUrls as $index => $url) {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $token,
+            ]);
+
+            // Execute the cURL request
+            $response = curl_exec($ch);
+            $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($http_status_code === 201) {
+                $apiData[$dataKeys[$index]] = json_decode($response, true)['data'];
+            } else {
+                // Error fetching data
+                return $this->renderErrorView($http_status_code);
+            }
         }
+
+        // Render the view, passing the data
+        return view('/admin/tambahPegawai', array_merge($apiData, ['title' => $title]));
+    } else {
+        // If session does not exist, redirect or handle unauthorized access
+        return $this->renderErrorView(401); // You can define your own error handling method
     }
+}
+
 
     public function submitTambahPegawai()
     {

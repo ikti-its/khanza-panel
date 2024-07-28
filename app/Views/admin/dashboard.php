@@ -674,6 +674,71 @@
         <!-- End Grid -->
     </div>
     <!-- End Card Blog -->
+
+    <!-- Card Blog -->
+    <div class="px-4 py-10 sm:px-6 lg:py-10 mx-auto">
+        <!-- Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card -->
+            <div class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                <div class="px-5 py-5 flex flex-col justify-center items-start bg-white rounded-t-xl">
+                    <svg width="200" height="150" viewBox="0 0 607 506" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M135.649 221.971C125.227 217.556 113.767 215.113 101.736 215.113C53.6919 215.113 14.7441 254.062 14.7441 302.105C14.7441 350.15 53.6919 389.098 101.736 389.098C149.78 389.098 188.728 350.15 188.728 302.105C188.728 281.106 181.288 261.846 168.9 246.814" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M317.742 143.604C330.275 185.134 382.028 276.45 488.778 309.478" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M488.777 320.537C491.972 365.017 496.444 460.167 488.777 484.938" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M493.201 495.258C512.615 506.808 552.474 514.13 556.602 451.024C560.731 387.918 553.409 308.25 549.23 276.303" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M561.763 293.259C581.668 270.406 640.645 188.574 572.084 69.1445" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M555.128 49.2428C520.478 13.8525 502.048 0.451937 478.456 19.7543C469.61 26.9925 467.398 43.3443 480.668 63.9865" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M291.939 59.5583C288.99 40.3905 294.967 10.3008 320.691 3.53053C334.698 -0.156151 353.866 16.248 359.026 25.648" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M384.829 110.428C396.358 159.485 438.491 251.928 514.894 229.981C515.17 229.901 515.441 229.795 515.693 229.66C535.476 219.026 555.341 178.486 519.003 122.223" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M389.253 122.961L477.72 69.1434C491.792 58.4685 526.652 39.842 554.78 49.5838C555.493 49.8312 556.122 50.2784 556.61 50.8554L569.986 66.6622C571.235 68.1384 571.384 70.2582 570.325 71.8771C552.085 99.7897 538.85 106.529 513.843 122.961" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M327.326 170.881L184.305 271.143" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M409.157 171.619C461.5 148.764 459.288 148.764 514.58 122.963" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M189.465 287.364L345.019 204.795" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M427.298 139.241L488.487 104.592" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M315.53 130.334C310.222 139.181 300.786 145.079 293.413 150.24L34.6485 351.501C30.3221 354.092 26.7965 350.041 25.3221 347.092C22.6638 341.776 25.0648 339.023 26.5391 337.494C118.938 241.655 268.643 87.4276 284.567 69.1445" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M359.026 25.6484C367.395 36.6323 376.933 52.6818 384.388 67.9781C384.68 68.5769 384.829 69.2336 384.829 69.8997V111.903" stroke="#24A793" stroke-width="5" stroke-linecap="round" />
+                        <path d="M161.897 226.97L283.539 114.176" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M280.144 221.75L319.216 194.473" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M315.53 131.07C321.183 116.326 342.513 83.1513 382.617 68.4062" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M285.304 68.4073C302.753 57.1032 344.282 36.7068 370.822 45.5534" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M59.715 453.973C92.6946 453.973 119.43 447.372 119.43 439.229C119.43 431.086 92.6946 424.484 59.715 424.484C26.7353 424.484 0 431.086 0 439.229C0 447.372 26.7353 453.973 59.715 453.973Z" fill="#24A793" />
+                        <path d="M23.5908 263.773C37.8438 253.206 64.8752 239.442 98.0502 263.773" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                        <path d="M116.481 288.84C127.294 301.126 145.675 336.907 132.7 381.73" stroke="#13594E" stroke-width="5" stroke-linecap="round" />
+                    </svg>
+
+
+                </div>
+                <div class="p-4 md:p-6">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-neutral-300 dark:hover:text-white">
+                        Data Shift
+                    </h3>
+                    <p class="mt-3 font-medium text-gray-500 dark:text-neutral-500">
+                        Kelola Data Shift Kerja Pegawai
+                    </p>
+                </div>
+
+
+                <div class="p-4 md:p-6">
+                    <a href="/datashift" class="group inline-flex items-center py-2 border border-transparent text-base font-medium rounded-md text-[#1D8676] bg-transparent hover:text-gray-200 transition duration-300">
+                        Kelola Shift Kerja Pegawai
+                        <svg class="ml-3 group-hover:stroke-gray-200 transition duration-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M8.90997 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.90997 4.08008" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+            <!-- End Card -->
+
+         
+
+
+        </div>
+        <!-- End Grid -->
+    </div>
+    <!-- End Card Blog -->
 </div>
 
 <?= $this->endSection(); ?>
